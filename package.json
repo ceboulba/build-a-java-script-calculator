@@ -1,0 +1,26 @@
+{
+  "name": "build-a-java-script-calculator",
+  "version": "1.0.0",
+  "description": "Build a JavaScript Calculator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ceboulba/build-a-java-script-calculator.git"
+  },
+  "keywords": [],
+  "author": "Archipicture",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ceboulba/build-a-java-script-calculator/issues"
+  },
+  "homepage": "https://github.com/ceboulba/build-a-java-script-calculator#readme",
+  "dependencies": {
+    "bulma": "^0.7.4",
+    "parcel-bundler": "^1.11.0"
+  }
+}
