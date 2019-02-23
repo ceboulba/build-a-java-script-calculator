@@ -104,9 +104,30 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"src/js/app.js":[function(require,module,exports) {
+})({"src/js/calc.js":[function(require,module,exports) {
+"use strict";
 
-},{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = void 0;
+
+function Calc() {
+  return "\n  <div class=\"hero-body\">\n    <div class=\"container\">\n\n          <div class=\"columns is-multiline is-mobile is-vcentered\">\n\n            <div class=\"column is-12\">\n              <p class=\"box black\">result</p>\n            </div>\n\n            <div class=\"column is-6\">\n              <p class=\"box red\">AC</p>\n            </div>\n            <div class=\"column is-3\">\n              <p class=\"box gray has-text-centered\">/</p>\n            </div>\n            <div class=\"column is-3\">\n              <p class=\"box gray has-text-centered\">X</p>\n            </div>\n\n            <div class=\"column is-3\">\n              <p class=\"box dark-gray has-text-centered\">7</p>\n            </div>\n            <div class=\"column is-3\">\n              <p class=\"box dark-gray has-text-centered\">8</p>\n            </div>\n            <div class=\"column is-3\">\n              <p class=\"box dark-gray has-text-centered\">9</p>\n            </div>\n            <div class=\"column is-3\">\n              <p class=\"box gray has-text-centered\">-</p>\n            </div>\n\n            <div class=\"column is-3\">\n              <p class=\"box dark-gray has-text-centered\">4</p>\n            </div>\n            <div class=\"column is-3\">\n              <p class=\"box dark-gray has-text-centered\">5</p>\n            </div>\n            <div class=\"column is-3\">\n              <p class=\"box dark-gray has-text-centered\">6</p>\n            </div>\n            <div class=\"column is-3\">\n              <p class=\"box gray has-text-centered\">+</p>\n            </div>\n\n            <div class=\"column is-3\">\n              <p class=\"box dark-gray has-text-centered\">1</p>\n            </div>\n            <div class=\"column is-3\">\n              <p class=\"box dark-gray has-text-centered\">2</p>\n            </div>\n            <div class=\"column is-3\">\n              <p class=\"box dark-gray has-text-centered\">3</p>\n            </div>\n\n            <div class=\"column is-6\">\n              <p class=\"box dark-gray has-text-centered\">0</p>\n            </div>\n            <div class=\"column is-3\">\n              <p class=\"box dark-gray has-text-centered\">.</p>\n            </div>\n\n          </div>\n\n    </div>\n  </div>\n  ";
+}
+
+var _default = Calc;
+exports.default = _default;
+},{}],"src/js/app.js":[function(require,module,exports) {
+"use strict";
+
+var _calc = _interopRequireDefault(require("./calc"));
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+console.log("HelloWorld !");
+var App = document.getElementById("root").innerHTML = (0, _calc.default)();
+},{"./calc":"src/js/calc.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -133,7 +154,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57766" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57012" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
@@ -276,3 +297,4 @@ function hmrAccept(bundle, id) {
   });
 }
 },{}]},{},["node_modules/parcel-bundler/src/builtins/hmr-runtime.js","src/js/app.js"], null)
+//# sourceMappingURL=/app.77c12427.map
