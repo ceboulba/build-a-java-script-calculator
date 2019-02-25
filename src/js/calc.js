@@ -1,10 +1,12 @@
 function Calc() {
+  let text = 'see my result'
+
   return `
   <div class="hero-body">
     <div class="container">
 
       <div class="calculatrice">
-        <div class="bt display">display</div>
+        <div class="bt display">${text}</div>
         <div class="bt ac op">AC</div>
         <div class="bt divi op">/</div>
         <div class="bt mult op">x</div>
