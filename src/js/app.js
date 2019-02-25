@@ -20,10 +20,8 @@ const operators = [...document.querySelectorAll(".op")].map(op =>
     operate(e)
   })
 )
-console.log(operators)
 
 const clear = document.querySelector(".clear").addEventListener("click", () => {
-  console.log("clearClicked")
   operation = ["0"]
   display.innerText = operation.join("")
 })
