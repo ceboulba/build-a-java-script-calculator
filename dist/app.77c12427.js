@@ -113,7 +113,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 function Calc() {
-  return "\n  <div class=\"hero-body\">\n    <div class=\"container\">\n\n      <div class=\"columns is-multiline is-mobile is-vcentered\">\n        <div class=\"column is-12\">\n          <p class=\"box black\">result</p>\n        </div>\n\n        <div class=\"column is-6\">\n          <p class=\"box red\">AC</p>\n        </div>\n        <div class=\"column is-3\">\n          <p class=\"box gray has-text-centered\">/</p>\n        </div>\n        <div class=\"column is-3\">\n          <p class=\"box gray has-text-centered\">X</p>\n        </div>\n\n        <div class=\"column is-3\">\n          <p class=\"box dark-gray has-text-centered\">7</p>\n        </div>\n        <div class=\"column is-3\">\n          <p class=\"box dark-gray has-text-centered\">8</p>\n        </div>\n        <div class=\"column is-3\">\n          <p class=\"box dark-gray has-text-centered\">9</p>\n        </div>\n        <div class=\"column is-3\">\n          <p class=\"box gray has-text-centered\">-</p>\n        </div>\n\n        <div class=\"column is-3\">\n          <p class=\"box dark-gray has-text-centered\">4</p>\n        </div>\n        <div class=\"column is-3\">\n          <p class=\"box dark-gray has-text-centered\">5</p>\n        </div>\n        <div class=\"column is-3\">\n          <p class=\"box dark-gray has-text-centered\">6</p>\n        </div>\n        <div class=\"column is-3\">\n          <p class=\"box gray has-text-centered\">+</p>\n        </div>\n\n        <div class=\"column is-3\">\n        <p class=\"box dark-gray has-text-centered\">1</p>\n        </div>\n        <div class=\"column is-3\">\n        <p class=\"box dark-gray has-text-centered\">2</p>\n        </div>\n        <div class=\"column is-3\">\n        <p class=\"box dark-gray has-text-centered\">3</p>\n        </div>\n        <div class=\"column is-3\">\n        <p class=\"box blue has-text-centered\" id=\"equals\">=</p>\n        </div>\n\n        <div class=\"column is-6\">\n        <p class=\"box dark-gray has-text-centered\">0</p>\n        </div>\n        <div class=\"column is-3\">\n        <p class=\"box dark-gray has-text-centered\">.</p>\n        </div>\n\n\n      </div>\n\n    </div>\n  </div>\n  ";
+  var text = 'see my result';
+  return "\n  <div class=\"hero-body\">\n    <div class=\"container\">\n\n      <div class=\"calculatrice\">\n        <div class=\"bt display\">".concat(text, "</div>\n        <div class=\"bt ac op\">AC</div>\n        <div class=\"bt divi op\">/</div>\n        <div class=\"bt mult op\">x</div>\n        <div class=\"bt min op\">-</div>\n        <div class=\"bt add op\">+</div>\n        <div class=\"bt equ op\">=</div>\n        <div class=\"bt seven\">7</div>\n        <div class=\"bt eight\">8</div>\n        <div class=\"bt nine\">9</div>\n        <div class=\"bt for\">4</div>\n        <div class=\"bt five\">5</div>\n        <div class=\"bt six\">6</div>\n        <div class=\"bt one\">1</div>\n        <div class=\"bt two\">2</div>\n        <div class=\"bt three\">3</div>\n        <div class=\"bt zero\">0</div>\n        <div class=\"bt dec\">.</div>\n      </div>\n\n    </div>\n  </div>\n  ");
 }
 
 var _default = Calc;
@@ -154,7 +155,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61824" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61401" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
