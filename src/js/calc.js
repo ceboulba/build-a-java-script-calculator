@@ -4,6 +4,7 @@ function Calc() {
     <div class="container">
 
       <div class="columns is-multiline is-mobile is-vcentered">
+
         <div class="column is-12">
           <p class="box black">result</p>
         </div>
@@ -64,7 +65,10 @@ function Calc() {
         <p class="box dark-gray has-text-centered">.</p>
         </div>
 
+      </div>
 
+      <div class="calculatrice">
+      <div class="display box black"></div>
       </div>
 
     </div>

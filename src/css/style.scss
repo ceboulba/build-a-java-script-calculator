@@ -1,4 +1,4 @@
-@import "./../../node_modules/bulma/bulma.sass";
+@import './../../node_modules/bulma/bulma.sass';
 
 div.box {
   width: 450px;
@@ -9,27 +9,31 @@ div.box {
   padding: 0.25rem;
 }
 
-p.box.gray {
+.gray {
   background-color: darkgray;
   color: white;
 }
 
-p.box.dark-gray {
+.dark-gray {
   background-color: gray;
   color: white;
 }
 
-p.box.red {
+.red {
   background-color: red;
   color: white;
 }
 
-p.box.blue {
+.blue {
   background-color: darkcyan;
   color: white;
 }
 
-p.box.black {
+.black {
   background-color: black;
   color: green;
+}
+
+.display {
+  height: 2rem;
 }
