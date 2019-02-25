@@ -5,12 +5,12 @@ function Calc() {
 
       <div class="calculatrice">
         <div class="bt display">display</div>
-        <div class="bt ac">AC</div>
-        <div class="bt divi">/</div>
-        <div class="bt mult">X</div>
-        <div class="bt min">-</div>
-        <div class="bt add">+</div>
-        <div class="bt equ">=</div>
+        <div class="bt ac op">AC</div>
+        <div class="bt divi op">/</div>
+        <div class="bt mult op">x</div>
+        <div class="bt min op">-</div>
+        <div class="bt add op">+</div>
+        <div class="bt equ op">=</div>
         <div class="bt seven">7</div>
         <div class="bt eight">8</div>
         <div class="bt nine">9</div>

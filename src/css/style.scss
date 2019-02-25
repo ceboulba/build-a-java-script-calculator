@@ -10,8 +10,10 @@
     'for five six addi'
     'one two three equ'
     'zero zero dec equ';
-  max-width: 650px;
+  max-width: 550px;
+  margin: auto;
 }
+
 .bt {
   background-color: rgb(221, 221, 221);
   color: dargray;
@@ -21,7 +23,14 @@
   display: block;
   padding: 1.25rem;
   margin: 0.25rem 0.25rem;
+  text-align: center;
 }
+
+.op {
+  background-color: rgb(95, 95, 95);
+  color: white;
+}
+
 .box:not(:last-child) {
   margin-bottom: 0;
 }
@@ -31,45 +40,61 @@
   background-color: black;
   color: greenyellow;
 }
+
 .ac {
   grid-area: ac;
+  background-color: darkred;
 }
+
 .divi {
   grid-area: divi;
 }
+
 .mult {
   grid-area: mult;
 }
+
 .min {
   grid-area: mini;
 }
+
 .add {
   grid-area: addi;
 }
+
 .equ {
   grid-area: equ;
+  background-color: darkcyan;
 }
+
 .nine {
   grid-area: nine;
 }
+
 .eight {
   grid-area: eight;
 }
+
 .seven {
   grid-area: seven;
 }
+
 .six {
   grid-area: six;
 }
+
 .five {
   grid-area: five;
 }
+
 .for {
   grid-area: for;
 }
+
 .three {
   grid-area: three;
 }
+
 .two {
   grid-area: two;
 }
