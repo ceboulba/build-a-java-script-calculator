@@ -1,39 +1,81 @@
 @import './../../node_modules/bulma/bulma.sass';
 
-div.box {
-  width: 450px;
-  height: 640px;
+.calculatrice {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-areas:
+    'disp disp disp disp'
+    'ac ac divi mult'
+    'seven eight nine mini'
+    'for five six addi'
+    'one two three equ'
+    'zero zero dec equ';
+  max-width: 650px;
 }
-
-.column {
-  padding: 0.25rem;
+.bt {
+  background-color: rgb(221, 221, 221);
+  color: dargray;
+  border-radius: 6px;
+  border: 1px solid rgb(100, 100, 100);
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+  display: block;
+  padding: 1.25rem;
+  margin: 0.25rem 0.25rem;
 }
-
-.gray {
-  background-color: darkgray;
-  color: white;
-}
-
-.dark-gray {
-  background-color: gray;
-  color: white;
-}
-
-.red {
-  background-color: red;
-  color: white;
-}
-
-.blue {
-  background-color: darkcyan;
-  color: white;
-}
-
-.black {
-  background-color: black;
-  color: green;
+.box:not(:last-child) {
+  margin-bottom: 0;
 }
 
 .display {
-  height: 2rem;
+  grid-area: disp;
+  background-color: black;
+  color: greenyellow;
+}
+.ac {
+  grid-area: ac;
+}
+.divi {
+  grid-area: divi;
+}
+.mult {
+  grid-area: mult;
+}
+.min {
+  grid-area: mini;
+}
+.add {
+  grid-area: addi;
+}
+.equ {
+  grid-area: equ;
+}
+.nine {
+  grid-area: nine;
+}
+.eight {
+  grid-area: eight;
+}
+.seven {
+  grid-area: seven;
+}
+.six {
+  grid-area: six;
+}
+.five {
+  grid-area: five;
+}
+.for {
+  grid-area: for;
+}
+.three {
+  grid-area: three;
+}
+.two {
+  grid-area: two;
+}
+.one {
+  grid-area: one;
+}
+.zero {
+  grid-area: zero;
 }
