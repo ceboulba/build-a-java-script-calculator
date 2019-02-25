@@ -113,8 +113,8 @@ Object.defineProperty(exports, "__esModule", {
 exports.default = void 0;
 
 function Calc() {
-  var text = 'see my result';
-  return "\n  <div class=\"hero-body\">\n    <div class=\"container\">\n\n      <div class=\"calculatrice\">\n        <div class=\"bt display\">".concat(text, "</div>\n        <div class=\"bt ac op\">AC</div>\n        <div class=\"bt divi op\">/</div>\n        <div class=\"bt mult op\">x</div>\n        <div class=\"bt min op\">-</div>\n        <div class=\"bt add op\">+</div>\n        <div class=\"bt equ op\">=</div>\n        <div class=\"bt seven\">7</div>\n        <div class=\"bt eight\">8</div>\n        <div class=\"bt nine\">9</div>\n        <div class=\"bt for\">4</div>\n        <div class=\"bt five\">5</div>\n        <div class=\"bt six\">6</div>\n        <div class=\"bt one\">1</div>\n        <div class=\"bt two\">2</div>\n        <div class=\"bt three\">3</div>\n        <div class=\"bt zero\">0</div>\n        <div class=\"bt dec\">.</div>\n      </div>\n\n    </div>\n  </div>\n  ");
+  var text = ["0"];
+  return "\n  <div class=\"hero-body\">\n    <div class=\"container\">\n\n      <div class=\"calculatrice\">\n        <div class=\"bt display\">".concat(text[0], "</div>\n        <div class=\"bt ac clear\">AC</div>\n        <div class=\"bt divi op\">/</div>\n        <div class=\"bt mult op\">x</div>\n        <div class=\"bt min op\">-</div>\n        <div class=\"bt add op\">+</div>\n        <div class=\"bt equ\">=</div>\n        <div class=\"bt seven num\">7</div>\n        <div class=\"bt eight num\">8</div>\n        <div class=\"bt nine num\">9</div>\n        <div class=\"bt for num\">4</div>\n        <div class=\"bt five num\">5</div>\n        <div class=\"bt six num\">6</div>\n        <div class=\"bt one num\">1</div>\n        <div class=\"bt two num\">2</div>\n        <div class=\"bt three num\">3</div>\n        <div class=\"bt zero num\">0</div>\n        <div class=\"bt dec num\">.</div>\n      </div>\n\n    </div>\n  </div>\n  ");
 }
 
 var _default = Calc;
@@ -126,8 +126,69 @@ var _calc = _interopRequireDefault(require("./calc"));
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
 console.log("HelloWorld !");
 var App = document.getElementById("root").innerHTML = (0, _calc.default)();
+var operation = [];
+var result = document.querySelector(".display");
+var resultat = ["0"];
+var display = document.querySelector(".display");
+
+var nums = _toConsumableArray(document.querySelectorAll(".num")).map(function (num) {
+  return num.addEventListener("click", function (e) {
+    action(e);
+  });
+});
+
+var operators = _toConsumableArray(document.querySelectorAll(".op")).map(function (op) {
+  return op.addEventListener("click", function (e) {
+    operate(e);
+  });
+});
+
+console.log(operators);
+var clear = document.querySelector(".clear").addEventListener("click", function () {
+  console.log("clearClicked");
+  operation = ["0"];
+  display.innerText = operation.join("");
+});
+var equal = document.querySelector(".equ").addEventListener("click", function () {
+  if (operation.length >= 1) {
+    var temp = eval(operation.join(""));
+    console.log(temp);
+    display.innerHTML = temp;
+    operation = [temp];
+  }
+
+  return;
+});
+
+var operate = function operate(operator) {
+  if (operator.target.innerText === "x") {
+    operation.push("*");
+  } else {
+    operation.push(operator.target.innerText);
+  }
+
+  display.innerText = operation.join("");
+};
+
+function action(e) {
+  if (operation[0] === "0") {
+    operation.shift();
+  }
+
+  operation.push(e.target.innerText);
+  display.innerText = operation.join("");
+  console.log("operation => ", operation);
+}
 },{"./calc":"src/js/calc.js"}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -155,7 +216,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54391" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61401" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

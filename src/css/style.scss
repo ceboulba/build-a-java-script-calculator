@@ -1,24 +1,26 @@
-@import './../../node_modules/bulma/bulma.sass';
+@import "./../../node_modules/bulma/bulma.sass";
+
+$gris-fonce: rgb(100, 100, 100);
+$gris-clair: rgb(221, 221, 221);
 
 .calculatrice {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   grid-template-areas:
-    'disp disp disp disp'
-    'ac ac divi mult'
-    'seven eight nine mini'
-    'for five six addi'
-    'one two three equ'
-    'zero zero dec equ';
+    "disp disp disp disp"
+    "ac ac divi mult"
+    "seven eight nine mini"
+    "for five six addi"
+    "one two three equ"
+    "zero zero dec equ";
   max-width: 550px;
   margin: auto;
 }
 
 .bt {
-  background-color: rgb(221, 221, 221);
-  color: dargray;
+  background-color: $gris-clair;
+  color: white;
   border-radius: 6px;
-  border: 1px solid rgb(100, 100, 100);
+  border: 1px solid $gris-fonce;
   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
   display: block;
   padding: 1.25rem;
@@ -26,8 +28,12 @@
   text-align: center;
 }
 
+.num {
+  color: $gris-fonce;
+}
+
 .op {
-  background-color: rgb(95, 95, 95);
+  background-color: $gris-fonce;
   color: white;
 }
 

@@ -9090,7 +9090,6 @@ label.panel-block:hover {
 
 .calculatrice {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
   grid-template-areas: "disp disp disp disp" "ac ac divi mult" "seven eight nine mini" "for five six addi" "one two three equ" "zero zero dec equ";
   max-width: 550px;
   margin: auto;
@@ -9098,7 +9097,7 @@ label.panel-block:hover {
 
 .bt {
   background-color: #dddddd;
-  color: dargray;
+  color: white;
   border-radius: 6px;
   border: 1px solid #646464;
   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
@@ -9108,8 +9107,12 @@ label.panel-block:hover {
   text-align: center;
 }
 
+.num {
+  color: #646464;
+}
+
 .op {
-  background-color: #5f5f5f;
+  background-color: #646464;
   color: white;
 }
 
