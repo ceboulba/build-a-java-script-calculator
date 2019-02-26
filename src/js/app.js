@@ -1,13 +1,14 @@
 import Calc from './calc'
 
-console.log('HelloWorld !')
 const App = (document.getElementById('root').innerHTML = Calc())
 
 let operation = []
-let result = document.querySelector('.display')
+let input = []
+let output = []
+let result = document.querySelector('#display')
 let resultat = ['0']
 
-const display = document.querySelector('.display')
+const display = document.querySelector('#display')
 
 const nums = [...document.querySelectorAll('.num')].map(num =>
   num.addEventListener('click', e => {
@@ -21,7 +22,7 @@ const operators = [...document.querySelectorAll('.op')].map(op =>
   })
 )
 
-const clear = document.querySelector('.clear').addEventListener('click', () => {
+const clear = document.querySelector('#clear').addEventListener('click', () => {
   operation = ['0']
   display.innerText = operation.join('')
 })

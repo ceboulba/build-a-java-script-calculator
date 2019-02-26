@@ -6928,7 +6928,7 @@ label.panel-block {
 
 .calculatrice {
   display: grid;
-  grid-template-areas: "disp disp disp disp" "ac ac divi mult" "seven eight nine mini" "for five six addi" "one two three equ" "zero zero dec equ";
+  grid-template-areas: 'disp disp disp disp' 'ac ac divi mult' 'seven eight nine mini' 'for five six addi' 'one two three equ' 'zero zero dec equ';
   max-width: 550px;
   margin: auto; }
 
@@ -6953,10 +6953,17 @@ label.panel-block {
 .box:not(:last-child) {
   margin-bottom: 0; }
 
-.display {
+.screen {
   grid-area: disp;
   background-color: black;
   color: greenyellow; }
+
+.display {
+  font-size: 2rem; }
+
+.input-line {
+  text-align: right;
+  color: white; }
 
 .ac {
   grid-area: ac;

@@ -110,7 +110,7 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 function Calc() {
-  return "\n  <div class=\"hero-body\">\n    <div class=\"container\">\n\n      <div class=\"calculatrice\">\n        <div class=\"bt display\" id=\"display\">0</div>\n        <div class=\"bt ac op\" id=\"clear\">AC</div>\n        <div class=\"bt divi op\" id=\"divide\">/</div>\n        <div class=\"bt mult op\" id=\"multiply\">x</div>\n        <div class=\"bt min op\" id=\"subtract\">-</div>\n        <div class=\"bt add op\" id=\"add\">+</div>\n        <div class=\"bt equ op\" id=\"equals\">=</div>\n        <div class=\"bt seven\" id=\"seven\">7</div>\n        <div class=\"bt eight\" id=\"eight\">8</div>\n        <div class=\"bt nine\" id=\"nine\">9</div>\n        <div class=\"bt for\" id=\"four\">4</div>\n        <div class=\"bt five\" id=\"five\">5</div>\n        <div class=\"bt six\" id=\"six\">6</div>\n        <div class=\"bt one\" id=\"one\">1</div>\n        <div class=\"bt two\" id=\"two\">2</div>\n        <div class=\"bt three\" id=\"three\">3</div>\n        <div class=\"bt zero\" id=\"zero\">0</div>\n        <div class=\"bt dec\" id=\"decimal\">.</div>\n      </div>\n\n    </div>\n  </div>\n  ";
+  return "\n  <div class=\"hero-body\">\n    <div class=\"container\">\n\n      <div class=\"calculatrice\">\n        <div class=\"bt screen\">\n          <div class=\"input-line\" id=\"input\">0</div>\n          <div class=\"display\" id=\"display\">0</div>\n        </div>\n        <div class=\"bt ac op clear\" id=\"clear\">AC</div>\n        <div class=\"bt divi op\" id=\"divide\">/</div>\n        <div class=\"bt mult op\" id=\"multiply\">x</div>\n        <div class=\"bt min op\" id=\"subtract\">-</div>\n        <div class=\"bt add op\" id=\"add\">+</div>\n        <div class=\"bt equ op\" id=\"equals\">=</div>\n        <div class=\"bt seven num\" id=\"seven\">7</div>\n        <div class=\"bt eight num\" id=\"eight\">8</div>\n        <div class=\"bt nine num\" id=\"nine\">9</div>\n        <div class=\"bt four num\" id=\"four\">4</div>\n        <div class=\"bt five num\" id=\"five\">5</div>\n        <div class=\"bt six num\" id=\"six\">6</div>\n        <div class=\"bt one num\" id=\"one\">1</div>\n        <div class=\"bt two num\" id=\"two\">2</div>\n        <div class=\"bt three num\" id=\"three\">3</div>\n        <div class=\"bt zero num\" id=\"zero\">0</div>\n        <div class=\"bt dec\" id=\"decimal\">.</div>\n      </div>\n\n    </div>\n  </div>\n  ";
 }
 
 exports.default = Calc;
@@ -125,14 +125,15 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-console.log('HelloWorld !');
 var App = document.getElementById('root').innerHTML = (0, _calc2.default)();
 
 var operation = [];
-var result = document.querySelector('.display');
+var input = [];
+var output = [];
+var result = document.querySelector('#display');
 var resultat = ['0'];
 
-var display = document.querySelector('.display');
+var display = document.querySelector('#display');
 
 var nums = [].concat(_toConsumableArray(document.querySelectorAll('.num'))).map(function (num) {
   return num.addEventListener('click', function (e) {
@@ -146,7 +147,7 @@ var operators = [].concat(_toConsumableArray(document.querySelectorAll('.op'))).
   });
 });
 
-var clear = document.querySelector('.clear').addEventListener('click', function () {
+var clear = document.querySelector('#clear').addEventListener('click', function () {
   operation = ['0'];
   display.innerText = operation.join('');
 });
@@ -207,7 +208,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '59786' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '61497' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
