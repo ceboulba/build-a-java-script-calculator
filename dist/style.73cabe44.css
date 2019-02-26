@@ -9088,36 +9088,106 @@ label.panel-block:hover {
   padding: 3rem 1.5rem 6rem;
 }
 
-div.box {
-  width: 450px;
-  height: 640px;
+.calculatrice {
+  display: grid;
+  grid-template-areas: "disp disp disp disp" "ac ac divi mult" "seven eight nine mini" "for five six addi" "one two three equ" "zero zero dec equ";
+  max-width: 550px;
+  margin: auto;
 }
 
-.column {
-  padding: 0.25rem;
+.bt {
+  background-color: #dddddd;
+  color: white;
+  border-radius: 6px;
+  border: 1px solid #646464;
+  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+  display: block;
+  padding: 1.25rem;
+  margin: 0.25rem 0.25rem;
+  text-align: center;
 }
 
-p.box.gray {
-  background-color: darkgray;
+.num {
+  color: #646464;
+}
+
+.op {
+  background-color: #646464;
   color: white;
 }
 
-p.box.dark-gray {
-  background-color: gray;
-  color: white;
+.box:not(:last-child) {
+  margin-bottom: 0;
 }
 
-p.box.red {
-  background-color: red;
-  color: white;
-}
-
-p.box.blue {
-  background-color: darkcyan;
-  color: white;
-}
-
-p.box.black {
+.display {
+  grid-area: disp;
   background-color: black;
-  color: green;
+  color: greenyellow;
+}
+
+.ac {
+  grid-area: ac;
+  background-color: #b10000;
+}
+
+.divi {
+  grid-area: divi;
+}
+
+.mult {
+  grid-area: mult;
+}
+
+.min {
+  grid-area: mini;
+}
+
+.add {
+  grid-area: addi;
+}
+
+.equ {
+  grid-area: equ;
+  background-color: #4d7cb9;
+}
+
+.nine {
+  grid-area: nine;
+}
+
+.eight {
+  grid-area: eight;
+}
+
+.seven {
+  grid-area: seven;
+}
+
+.six {
+  grid-area: six;
+}
+
+.five {
+  grid-area: five;
+}
+
+.for {
+  grid-area: for;
+}
+
+.three {
+  grid-area: three;
+}
+
+.two {
+  grid-area: two;
+}
+
+.one {
+  grid-area: one;
+}
+
+.zero {
+  grid-area: zero;
 }
