@@ -104,15 +104,13 @@ parcelRequire = (function (modules, cache, entry, globalName) {
   // Override the current require with this new one
   return newRequire;
 })({"src\\js\\calc.js":[function(require,module,exports) {
-'use strict';
+"use strict";
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 function Calc() {
-  var text = 'see my result';
-
-  return '\n  <div class="hero-body">\n    <div class="container">\n\n      <div class="calculatrice">\n        <div class="bt display">' + text + '</div>\n        <div class="bt ac op">AC</div>\n        <div class="bt divi op">/</div>\n        <div class="bt mult op">x</div>\n        <div class="bt min op">-</div>\n        <div class="bt add op">+</div>\n        <div class="bt equ op">=</div>\n        <div class="bt seven">7</div>\n        <div class="bt eight">8</div>\n        <div class="bt nine">9</div>\n        <div class="bt for">4</div>\n        <div class="bt five">5</div>\n        <div class="bt six">6</div>\n        <div class="bt one">1</div>\n        <div class="bt two">2</div>\n        <div class="bt three">3</div>\n        <div class="bt zero">0</div>\n        <div class="bt dec">.</div>\n      </div>\n\n    </div>\n  </div>\n  ';
+  return "\n  <div class=\"hero-body\">\n    <div class=\"container\">\n\n      <div class=\"calculatrice\">\n        <div class=\"bt display\" id=\"display\">0</div>\n        <div class=\"bt ac op\" id=\"clear\">AC</div>\n        <div class=\"bt divi op\" id=\"divide\">/</div>\n        <div class=\"bt mult op\" id=\"multiply\">x</div>\n        <div class=\"bt min op\" id=\"subtract\">-</div>\n        <div class=\"bt add op\" id=\"add\">+</div>\n        <div class=\"bt equ op\" id=\"equals\">=</div>\n        <div class=\"bt seven\" id=\"seven\">7</div>\n        <div class=\"bt eight\" id=\"eight\">8</div>\n        <div class=\"bt nine\" id=\"nine\">9</div>\n        <div class=\"bt for\" id=\"four\">4</div>\n        <div class=\"bt five\" id=\"five\">5</div>\n        <div class=\"bt six\" id=\"six\">6</div>\n        <div class=\"bt one\" id=\"one\">1</div>\n        <div class=\"bt two\" id=\"two\">2</div>\n        <div class=\"bt three\" id=\"three\">3</div>\n        <div class=\"bt zero\" id=\"zero\">0</div>\n        <div class=\"bt dec\" id=\"decimal\">.</div>\n      </div>\n\n    </div>\n  </div>\n  ";
 }
 
 exports.default = Calc;
@@ -156,7 +154,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '62984' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '58253' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
