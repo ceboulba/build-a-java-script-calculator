@@ -115,16 +115,69 @@ function Calc() {
 
 exports.default = Calc;
 },{}],"src\\js\\app.js":[function(require,module,exports) {
-"use strict";
+'use strict';
 
-var _calc = require("./calc");
+var _calc = require('./calc');
 
 var _calc2 = _interopRequireDefault(_calc);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-console.log("HelloWorld !");
-var App = document.getElementById("root").innerHTML = (0, _calc2.default)();
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
+
+console.log('HelloWorld !');
+var App = document.getElementById('root').innerHTML = (0, _calc2.default)();
+
+var operation = [];
+var result = document.querySelector('.display');
+var resultat = ['0'];
+
+var display = document.querySelector('.display');
+
+var nums = [].concat(_toConsumableArray(document.querySelectorAll('.num'))).map(function (num) {
+  return num.addEventListener('click', function (e) {
+    action(e);
+  });
+});
+
+var operators = [].concat(_toConsumableArray(document.querySelectorAll('.op'))).map(function (op) {
+  return op.addEventListener('click', function (e) {
+    operate(e);
+  });
+});
+
+var clear = document.querySelector('.clear').addEventListener('click', function () {
+  operation = ['0'];
+  display.innerText = operation.join('');
+});
+
+var equal = document.querySelector('.equ').addEventListener('click', function () {
+  if (operation.length >= 1) {
+    var temp = eval(operation.join(''));
+    console.log(temp);
+    display.innerHTML = temp;
+    operation = [temp];
+  }
+  return;
+});
+
+var operate = function operate(operator) {
+  if (operator.target.innerText === 'x') {
+    operation.push('*');
+  } else {
+    operation.push(operator.target.innerText);
+  }
+  display.innerText = operation.join('');
+};
+
+function action(e) {
+  if (operation[0] === '0') {
+    operation.shift();
+  }
+  operation.push(e.target.innerText);
+  display.innerText = operation.join('');
+  console.log('operation => ', operation);
+}
 },{"./calc":"src\\js\\calc.js"}],"C:\\Users\\antoi\\AppData\\Roaming\\npm\\node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -154,7 +207,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '58253' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '59786' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
