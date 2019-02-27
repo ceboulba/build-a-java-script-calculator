@@ -24,6 +24,7 @@ function Calc() {
         <div class="bt three num">3</div>
         <div class="bt zero num">0</div>
         <div class="bt dec num">.</div>
+        <button class="button" mouseclick="()=>{alert('boum !')}">a boutton</button>
       </div>
 
     </div>

@@ -114,7 +114,7 @@ exports.default = void 0;
 
 function Calc() {
   var text = ["0"];
-  return "\n  <div class=\"hero-body\">\n    <div class=\"container\">\n\n      <div class=\"calculatrice\">\n        <div class=\"bt display\">".concat(text[0], "</div>\n        <div class=\"bt ac clear\">AC</div>\n        <div class=\"bt divi op\">/</div>\n        <div class=\"bt mult op\">x</div>\n        <div class=\"bt min op\">-</div>\n        <div class=\"bt add op\">+</div>\n        <div class=\"bt equ\">=</div>\n        <div class=\"bt seven num\">7</div>\n        <div class=\"bt eight num\">8</div>\n        <div class=\"bt nine num\">9</div>\n        <div class=\"bt for num\">4</div>\n        <div class=\"bt five num\">5</div>\n        <div class=\"bt six num\">6</div>\n        <div class=\"bt one num\">1</div>\n        <div class=\"bt two num\">2</div>\n        <div class=\"bt three num\">3</div>\n        <div class=\"bt zero num\">0</div>\n        <div class=\"bt dec num\">.</div>\n      </div>\n\n    </div>\n  </div>\n  ");
+  return "\n  <div class=\"hero-body\">\n    <div class=\"container\">\n\n      <div class=\"calculatrice\">\n        <div class=\"bt display\">".concat(text[0], "</div>\n        <div class=\"bt ac clear\">AC</div>\n        <div class=\"bt divi op\">/</div>\n        <div class=\"bt mult op\">x</div>\n        <div class=\"bt min op\">-</div>\n        <div class=\"bt add op\">+</div>\n        <div class=\"bt equ\">=</div>\n        <div class=\"bt seven num\">7</div>\n        <div class=\"bt eight num\">8</div>\n        <div class=\"bt nine num\">9</div>\n        <div class=\"bt for num\">4</div>\n        <div class=\"bt five num\">5</div>\n        <div class=\"bt six num\">6</div>\n        <div class=\"bt one num\">1</div>\n        <div class=\"bt two num\">2</div>\n        <div class=\"bt three num\">3</div>\n        <div class=\"bt zero num\">0</div>\n        <div class=\"bt dec num\">.</div>\n        <button class=\"button\" mouseclick=\"()=>{alert('boum !')}\">a boutton</button>\n      </div>\n\n    </div>\n  </div>\n  ");
 }
 
 var _default = Calc;
@@ -153,9 +153,7 @@ var operators = _toConsumableArray(document.querySelectorAll(".op")).map(functio
   });
 });
 
-console.log(operators);
 var clear = document.querySelector(".clear").addEventListener("click", function () {
-  console.log("clearClicked");
   operation = ["0"];
   display.innerText = operation.join("");
 });
@@ -216,7 +214,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61401" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "54077" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
