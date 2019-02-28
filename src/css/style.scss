@@ -1,4 +1,4 @@
-@import "./../../node_modules/bulma/bulma.sass";
+@import './../../node_modules/bulma/bulma.sass';
 
 $gris-fonce: rgb(100, 100, 100);
 $gris-clair: rgb(221, 221, 221);
@@ -6,12 +6,12 @@ $gris-clair: rgb(221, 221, 221);
 .calculatrice {
   display: grid;
   grid-template-areas:
-    "disp disp disp disp"
-    "ac ac divi mult"
-    "seven eight nine mini"
-    "for five six addi"
-    "one two three equ"
-    "zero zero dec equ";
+    'disp disp disp disp'
+    'ac ac divi mult'
+    'seven eight nine mini'
+    'for five six addi'
+    'one two three equ'
+    'zero zero dec equ';
   max-width: 550px;
   margin: auto;
 }
@@ -41,10 +41,18 @@ $gris-clair: rgb(221, 221, 221);
   margin-bottom: 0;
 }
 
-.display {
+.screen {
   grid-area: disp;
   background-color: black;
   color: greenyellow;
+}
+.display {
+  font-size: 2rem;
+}
+
+.input-line {
+  text-align: right;
+  color: white;
 }
 
 .ac {

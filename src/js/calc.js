@@ -1,6 +1,4 @@
 function Calc() {
-  let text = ["0"]
-
   return `
   <div class="hero-body">
     <div class="container">
