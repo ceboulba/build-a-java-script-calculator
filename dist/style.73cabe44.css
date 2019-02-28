@@ -9120,10 +9120,19 @@ label.panel-block:hover {
   margin-bottom: 0;
 }
 
-.display {
+.screen {
   grid-area: disp;
   background-color: black;
   color: greenyellow;
+}
+
+.display {
+  font-size: 2rem;
+}
+
+.input-line {
+  text-align: right;
+  color: white;
 }
 
 .ac {

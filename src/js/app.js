@@ -1,37 +1,36 @@
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('hello')
+document.addEventListener("DOMContentLoaded", function() {
+  console.log("hello")
 
-  const inputScreen = document.getElementById('input')
-  const display = document.getElementById('display')
-  let sequenceScreen = []
-  let op = prepareDisplay(seq)
+  const inputScreen = document.getElementById("input")
+  const display = document.getElementById("display")
+  let input = "0"
+  const reg = /\./gm
 
-  const buttons = [...document.querySelectorAll('button')].map(button =>
-    button.addEventListener('click', event => {
+  const buttons = [...document.querySelectorAll("button")].map(button =>
+    button.addEventListener("click", event => {
       handleClick(event)
-      //alert(event.currentTarget)
     })
   )
 
-  function prepareDisplay(seq) {
-    const prepare = seq.join('')
-    console.log(prepare)
-  }
-
-// const clear = document.querySelector(".clear").addEventListener("click", () => {
-//   operation = ["0"]
-//   display.innerText = operation.join("")
-// })
-
   function handleClick(event) {
-    const input = event.target.value
-    console.log(input)
-    if (input === '=') {
-      calcul(operation)
-      return
+    const inputKey = event.target.value
+    console.log("inputKey => ", inputKey)
+    const test = input.match(reg)
+    console.log("test => ", test)
+    if (inputKey === "=" && input.length > 1) {
+      input = eval(input)
+      display.innerText = input
+    } else if (input[0] === "0") {
+      input = inputKey
+      display.innerText = input
+    } else if (inputKey === "reset") {
+      input = "0"
+      display.innerText = input
+    } else {
+      input += inputKey
+      display.innerText = input
     }
-    sequenceScreen.push(input)
-    prepareDisplay(sequenceScreen)
+    display.innerText = input
   }
 })
 
