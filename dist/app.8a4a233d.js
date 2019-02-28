@@ -103,83 +103,104 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 
   // Override the current require with this new one
   return newRequire;
-})({"src\\js\\calc.js":[function(require,module,exports) {
-"use strict";
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-function Calc() {
-  return "\n  <div class=\"hero-body\">\n    <div class=\"container\">\n\n      <div class=\"calculatrice\">\n        <div class=\"bt screen\">\n          <div class=\"input-line\" id=\"input\">0</div>\n          <div class=\"display\" id=\"display\">0</div>\n        </div>\n        <div class=\"bt ac op clear\" id=\"clear\">AC</div>\n        <div class=\"bt divi op\" id=\"divide\">/</div>\n        <div class=\"bt mult op\" id=\"multiply\">x</div>\n        <div class=\"bt min op\" id=\"subtract\">-</div>\n        <div class=\"bt add op\" id=\"add\">+</div>\n        <div class=\"bt equ op\" id=\"equals\">=</div>\n        <div class=\"bt seven num\" id=\"seven\">7</div>\n        <div class=\"bt eight num\" id=\"eight\">8</div>\n        <div class=\"bt nine num\" id=\"nine\">9</div>\n        <div class=\"bt four num\" id=\"four\">4</div>\n        <div class=\"bt five num\" id=\"five\">5</div>\n        <div class=\"bt six num\" id=\"six\">6</div>\n        <div class=\"bt one num\" id=\"one\">1</div>\n        <div class=\"bt two num\" id=\"two\">2</div>\n        <div class=\"bt three num\" id=\"three\">3</div>\n        <div class=\"bt zero num\" id=\"zero\">0</div>\n        <div class=\"bt dec\" id=\"decimal\">.</div>\n      </div>\n\n    </div>\n  </div>\n  ";
-}
-
-exports.default = Calc;
-},{}],"src\\js\\app.js":[function(require,module,exports) {
-'use strict';
-
-var _calc = require('./calc');
-
-var _calc2 = _interopRequireDefault(_calc);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
+})({"src\\js\\app.js":[function(require,module,exports) {
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
-var App = document.getElementById('root').innerHTML = (0, _calc2.default)();
+document.addEventListener('DOMContentLoaded', function () {
+  console.log('hello');
 
-var operation = [];
-var input = [];
-var output = [];
-var result = document.querySelector('#display');
-var resultat = ['0'];
+  var inputScreen = document.getElementById('input');
+  var display = document.getElementById('display');
+  var sequenceScreen = [];
+  var op = prepareDisplay(seq);
 
-var display = document.querySelector('#display');
-
-var nums = [].concat(_toConsumableArray(document.querySelectorAll('.num'))).map(function (num) {
-  return num.addEventListener('click', function (e) {
-    action(e);
+  var buttons = [].concat(_toConsumableArray(document.querySelectorAll('button'))).map(function (button) {
+    return button.addEventListener('click', function (event) {
+      handleClick(event);
+      //alert(event.currentTarget)
+    });
   });
-});
 
-var operators = [].concat(_toConsumableArray(document.querySelectorAll('.op'))).map(function (op) {
-  return op.addEventListener('click', function (e) {
-    operate(e);
-  });
-});
-
-var clear = document.querySelector('#clear').addEventListener('click', function () {
-  operation = ['0'];
-  display.innerText = operation.join('');
-});
-
-var equal = document.querySelector('.equ').addEventListener('click', function () {
-  if (operation.length >= 1) {
-    var temp = eval(operation.join(''));
-    console.log(temp);
-    display.innerHTML = temp;
-    operation = [temp];
+  function prepareDisplay(seq) {
+    var prepare = seq.join('');
+    console.log(prepare);
   }
-  return;
+
+  function calcul(operation) {
+    console.log(eval(operation));
+  }
+
+  function handleClick(event) {
+    var input = event.target.value;
+    console.log(input);
+    if (input === '=') {
+      calcul(operation);
+      return;
+    }
+    sequenceScreen.push(input);
+    prepareDisplay(sequenceScreen);
+  }
 });
 
-var operate = function operate(operator) {
-  if (operator.target.innerText === 'x') {
-    operation.push('*');
-  } else {
-    operation.push(operator.target.innerText);
-  }
-  display.innerText = operation.join('');
-};
+// let operation = []
+// let output = []
+// let result = document.querySelector('#display')
+// let resultat = ['0']
 
-function action(e) {
-  if (operation[0] === '0') {
-    operation.shift();
-  }
-  operation.push(e.target.innerText);
-  display.innerText = operation.join('');
-  console.log('operation => ', operation);
-}
-},{"./calc":"src\\js\\calc.js"}],"C:\\Users\\antoi\\AppData\\Roaming\\npm\\node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
+// const display = document.querySelector('#display')
+
+// const nums = [...document.querySelectorAll('.num')].map(num =>
+//   num.addEventListener('click', e => {
+//     action(e)
+//   })
+// )
+
+// function daboum() {
+//   console.log('BOUM')
+// }
+// daboum()
+
+// const operators = [...document.querySelectorAll('.op')].map(op =>
+//   op.addEventListener('click', e => {
+//     operate(e)
+//   })
+// )
+
+// const clear = document
+//   .querySelector('#clear')
+//   .addEventListener('click', () => {
+//     operation = ['0']
+//     display.innerText = operation.join('')
+//   })
+
+// const equal = document.querySelector('.equ').addEventListener('click', () => {
+//   if (operation.length >= 1) {
+//     const temp = eval(operation.join(''))
+//     console.log(temp)
+//     display.innerHTML = temp
+//     operation = [temp]
+//   }
+//   return
+// })
+
+// const operate = operator => {
+//   if (operator.target.innerText === 'x') {
+//     operation.push('*')
+//   } else {
+//     operation.push(operator.target.innerText)
+//   }
+//   display.innerText = operation.join('')
+// }
+
+// function action(e) {
+//   if (operation[0] === '0') {
+//     operation.shift()
+//   }
+//   operation.push(e.target.innerText)
+//   display.innerText = operation.join('')
+//   console.log('operation => ', operation)
+// }
+},{}],"C:\\Users\\antoi\\AppData\\Roaming\\npm\\node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 
@@ -208,7 +229,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '61497' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '62070' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

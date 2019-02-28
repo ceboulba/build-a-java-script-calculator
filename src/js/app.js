@@ -1,56 +1,94 @@
-import Calc from './calc'
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('hello')
 
-const App = (document.getElementById('root').innerHTML = Calc())
+  const inputScreen = document.getElementById('input')
+  const display = document.getElementById('display')
+  let sequenceScreen = []
+  let op = prepareDisplay(seq)
 
-let operation = []
-let input = []
-let output = []
-let result = document.querySelector('#display')
-let resultat = ['0']
+  const buttons = [...document.querySelectorAll('button')].map(button =>
+    button.addEventListener('click', event => {
+      handleClick(event)
+      //alert(event.currentTarget)
+    })
+  )
 
-const display = document.querySelector('#display')
+  function prepareDisplay(seq) {
+    const prepare = seq.join('')
+    console.log(prepare)
+  }
 
-const nums = [...document.querySelectorAll('.num')].map(num =>
-  num.addEventListener('click', e => {
-    action(e)
-  })
-)
+  function calcul(operation) {
+    console.log(eval(operation))
+  }
 
-const operators = [...document.querySelectorAll('.op')].map(op =>
-  op.addEventListener('click', e => {
-    operate(e)
-  })
-)
-
-const clear = document.querySelector('#clear').addEventListener('click', () => {
-  operation = ['0']
-  display.innerText = operation.join('')
+  function handleClick(event) {
+    const input = event.target.value
+    console.log(input)
+    if (input === '=') {
+      calcul(operation)
+      return
+    }
+    sequenceScreen.push(input)
+    prepareDisplay(sequenceScreen)
+  }
 })
 
-const equal = document.querySelector('.equ').addEventListener('click', () => {
-  if (operation.length >= 1) {
-    const temp = eval(operation.join(''))
-    console.log(temp)
-    display.innerHTML = temp
-    operation = [temp]
-  }
-  return
-})
+// let operation = []
+// let output = []
+// let result = document.querySelector('#display')
+// let resultat = ['0']
 
-const operate = operator => {
-  if (operator.target.innerText === 'x') {
-    operation.push('*')
-  } else {
-    operation.push(operator.target.innerText)
-  }
-  display.innerText = operation.join('')
-}
+// const display = document.querySelector('#display')
 
-function action(e) {
-  if (operation[0] === '0') {
-    operation.shift()
-  }
-  operation.push(e.target.innerText)
-  display.innerText = operation.join('')
-  console.log('operation => ', operation)
-}
+// const nums = [...document.querySelectorAll('.num')].map(num =>
+//   num.addEventListener('click', e => {
+//     action(e)
+//   })
+// )
+
+// function daboum() {
+//   console.log('BOUM')
+// }
+// daboum()
+
+// const operators = [...document.querySelectorAll('.op')].map(op =>
+//   op.addEventListener('click', e => {
+//     operate(e)
+//   })
+// )
+
+// const clear = document
+//   .querySelector('#clear')
+//   .addEventListener('click', () => {
+//     operation = ['0']
+//     display.innerText = operation.join('')
+//   })
+
+// const equal = document.querySelector('.equ').addEventListener('click', () => {
+//   if (operation.length >= 1) {
+//     const temp = eval(operation.join(''))
+//     console.log(temp)
+//     display.innerHTML = temp
+//     operation = [temp]
+//   }
+//   return
+// })
+
+// const operate = operator => {
+//   if (operator.target.innerText === 'x') {
+//     operation.push('*')
+//   } else {
+//     operation.push(operator.target.innerText)
+//   }
+//   display.innerText = operation.join('')
+// }
+
+// function action(e) {
+//   if (operation[0] === '0') {
+//     operation.shift()
+//   }
+//   operation.push(e.target.innerText)
+//   display.innerText = operation.join('')
+//   console.log('operation => ', operation)
+// }

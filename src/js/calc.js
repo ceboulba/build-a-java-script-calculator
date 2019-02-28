@@ -25,6 +25,7 @@ function Calc() {
         <div class="bt three num" id="three">3</div>
         <div class="bt zero num" id="zero">0</div>
         <div class="bt dec" id="decimal">.</div>
+        <button class="button" value="value of the button" onclick="boum">theButton</button>
       </div>
 
     </div>
