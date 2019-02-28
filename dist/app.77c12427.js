@@ -118,6 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var inputScreen = document.getElementById("input");
   var display = document.getElementById("display");
   var input = "0";
+  var output = "0";
   var reg = /\./gm;
 
   var buttons = _toConsumableArray(document.querySelectorAll("button")).map(function (button) {
@@ -129,17 +130,23 @@ document.addEventListener("DOMContentLoaded", function () {
   function handleClick(event) {
     var inputKey = event.target.value;
     console.log("inputKey => ", inputKey);
-    var test = input.match(reg);
-    console.log("test => ", test);
 
-    if (inputKey === "=" && input.length > 1) {
+    if (inputKey === "=") {
       input = eval(input);
       display.innerText = input;
+    } else if (inputKey === "clear") {
+      input = "0";
+      display.innerText = input;
+    } else if (inputKey === ".") {
+      var test = input.match(reg);
+
+      if (test) {
+        return;
+      }
+
+      input += inputKey;
     } else if (input[0] === "0") {
       input = inputKey;
-      display.innerText = input;
-    } else if (inputKey === "reset") {
-      input = "0";
       display.innerText = input;
     } else {
       input += inputKey;

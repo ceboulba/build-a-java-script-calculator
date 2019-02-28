@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const inputScreen = document.getElementById("input")
   const display = document.getElementById("display")
   let input = "0"
+  let output = "0"
   const reg = /\./gm
 
   const buttons = [...document.querySelectorAll("button")].map(button =>
@@ -15,16 +16,20 @@ document.addEventListener("DOMContentLoaded", function() {
   function handleClick(event) {
     const inputKey = event.target.value
     console.log("inputKey => ", inputKey)
-    const test = input.match(reg)
-    console.log("test => ", test)
-    if (inputKey === "=" && input.length > 1) {
+    if (inputKey === "=") {
       input = eval(input)
       display.innerText = input
+    } else if (inputKey === "clear") {
+      input = "0"
+      display.innerText = input
+    } else if (inputKey === ".") {
+      const test = input.match(reg)
+      if (test) {
+        return
+      }
+      input += inputKey
     } else if (input[0] === "0") {
       input = inputKey
-      display.innerText = input
-    } else if (inputKey === "reset") {
-      input = "0"
       display.innerText = input
     } else {
       input += inputKey
