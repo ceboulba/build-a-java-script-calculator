@@ -21,10 +21,10 @@ const operators = [...document.querySelectorAll(".op")].map(op =>
   })
 )
 
-const clear = document.querySelector(".clear").addEventListener("click", () => {
-  operation = ["0"]
-  display.innerText = operation.join("")
-})
+// const clear = document.querySelector(".clear").addEventListener("click", () => {
+//   operation = ["0"]
+//   display.innerText = operation.join("")
+// })
 
 const equal = document.querySelector(".equ").addEventListener("click", () => {
   if (operation.length >= 1) {

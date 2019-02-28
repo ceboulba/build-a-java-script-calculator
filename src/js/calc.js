@@ -7,7 +7,7 @@ function Calc() {
 
       <div class="calculatrice">
         <div class="bt display">${text[0]}</div>
-        <div class="bt ac clear">AC</div>
+        <div class="bt ac" nodevalue="clear" onclick="console.log(event)">AC</div>
         <div class="bt divi op">/</div>
         <div class="bt mult op">x</div>
         <div class="bt min op">-</div>
@@ -24,7 +24,6 @@ function Calc() {
         <div class="bt three num">3</div>
         <div class="bt zero num">0</div>
         <div class="bt dec num">.</div>
-        <button class="button" mouseclick="()=>{alert('boum !')}">a boutton</button>
       </div>
 
     </div>
