@@ -23,11 +23,8 @@ document.addEventListener("DOMContentLoaded", function() {
       input = "0"
       display.innerText = input
     } else if (inputKey === ".") {
-      const test = input.match(reg)
-      if (test) {
-        return
-      }
-      input += inputKey
+      console.log("input => ", input)
+      // input += inputKey
     } else if (input[0] === "0") {
       input = inputKey
       display.innerText = input
