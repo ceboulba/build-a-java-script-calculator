@@ -1,38 +1,60 @@
-document.addEventListener("DOMContentLoaded", function() {
-  console.log("hello")
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('hello')
 
-  const inputScreen = document.getElementById("input")
-  const display = document.getElementById("display")
-  let input = "0"
-  let output = "0"
+  const inputScreen = document.getElementById('input')
+  const display = document.getElementById('display')
+  const clear = document
+    .getElementById('clear')
+    .addEventListener('click', reset)
+  let input = '0'
+  let output = ' '
   const reg = /\./gm
 
-  const buttons = [...document.querySelectorAll("button")].map(button =>
-    button.addEventListener("click", event => {
+  const buttons = [...document.querySelectorAll('.num')].map(button =>
+    button.addEventListener('click', event => {
       handleClick(event)
     })
   )
 
+  function operation(entree) {
+    output += entree
+    inputScreen.innerText = output
+  }
+
+  function reset() {
+    console.log('on reset')
+    input = '0'
+    output = ' '
+    display.innerText = input
+    inputScreen.innerText = output
+  }
+
   function handleClick(event) {
     const inputKey = event.target.value
-    console.log("inputKey => ", inputKey)
-    if (inputKey === "=") {
-      input = eval(input)
-      display.innerText = input
-    } else if (inputKey === "clear") {
-      input = "0"
-      display.innerText = input
-    } else if (inputKey === "." && input[input.length - 1] !== ".") {
-      console.log("theInput => ", input[input.length - 1])
-      input += inputKey
-    } else if (input[0] === "0") {
+    console.log('inputKey => ', inputKey)
+    if (input === '0') {
       input = inputKey
-      // display.innerText = input
-    } else if (inputKey.match(/[0 - 9]/g)) {
-      input += inputKey
       display.innerText = input
+    } else {
+      display.innerText = input += inputKey
     }
-    display.innerText = input
+    operation(inputKey)
+    // if (inputKey === '=') {
+    //   input = eval(input)
+    //   display.innerText = input
+    // } else if (inputKey === 'clear') {
+    //   input = '0'
+    //   display.innerText = input
+    // } else if (inputKey === '.' && input[input.length - 1] !== '.') {
+    //   console.log('theInput => ', input[input.length - 1])
+    //   input += inputKey
+    // } else if (input[0] === '0') {
+    //   input = inputKey
+    //   // display.innerText = input
+    // } else if (inputKey.match(/[0 - 9]/g)) {
+    //   input += inputKey
+    //   display.innerText = input
+    // }
   }
 })
 

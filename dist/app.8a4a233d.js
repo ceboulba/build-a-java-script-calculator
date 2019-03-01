@@ -111,34 +111,56 @@ document.addEventListener('DOMContentLoaded', function () {
 
   var inputScreen = document.getElementById('input');
   var display = document.getElementById('display');
-  var sequenceScreen = [];
-  var op = prepareDisplay(seq);
+  var clear = document.getElementById('clear').addEventListener('click', reset);
+  var input = '0';
+  var output = ' ';
+  var reg = /\./gm;
 
-  var buttons = [].concat(_toConsumableArray(document.querySelectorAll('button'))).map(function (button) {
+  var buttons = [].concat(_toConsumableArray(document.querySelectorAll('.num'))).map(function (button) {
     return button.addEventListener('click', function (event) {
       handleClick(event);
-      //alert(event.currentTarget)
     });
   });
 
-  function prepareDisplay(seq) {
-    var prepare = seq.join('');
-    console.log(prepare);
+  function operation(entree) {
+    output += entree;
+    inputScreen.innerText = output;
   }
 
-  function calcul(operation) {
-    console.log(eval(operation));
+  function reset() {
+    console.log('on reset');
+    input = '0';
+    output = ' ';
+    display.innerText = input;
+    inputScreen.innerText = output;
   }
 
   function handleClick(event) {
-    var input = event.target.value;
-    console.log(input);
-    if (input === '=') {
-      calcul(operation);
-      return;
+    var inputKey = event.target.value;
+    console.log('inputKey => ', inputKey);
+    if (input === '0') {
+      input = inputKey;
+      display.innerText = input;
+    } else {
+      display.innerText = input += inputKey;
     }
-    sequenceScreen.push(input);
-    prepareDisplay(sequenceScreen);
+    operation(inputKey);
+    // if (inputKey === '=') {
+    //   input = eval(input)
+    //   display.innerText = input
+    // } else if (inputKey === 'clear') {
+    //   input = '0'
+    //   display.innerText = input
+    // } else if (inputKey === '.' && input[input.length - 1] !== '.') {
+    //   console.log('theInput => ', input[input.length - 1])
+    //   input += inputKey
+    // } else if (input[0] === '0') {
+    //   input = inputKey
+    //   // display.innerText = input
+    // } else if (inputKey.match(/[0 - 9]/g)) {
+    //   input += inputKey
+    //   display.innerText = input
+    // }
   }
 });
 
@@ -229,7 +251,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '62070' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '57100' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 

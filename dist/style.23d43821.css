@@ -6963,54 +6963,55 @@ label.panel-block {
 
 .input-line {
   text-align: right;
-  color: white; }
+  color: white;
+  min-height: 25px; }
 
-.ac {
+#clear {
   grid-area: ac;
   background-color: #b10000; }
 
-.divi {
+#divide {
   grid-area: divi; }
 
-.mult {
+#multiply {
   grid-area: mult; }
 
-.min {
+#substract {
   grid-area: mini; }
 
-.add {
+#add {
   grid-area: addi; }
 
-.equ {
+#equals {
   grid-area: equ;
   background-color: #4d7cb9; }
 
-.nine {
+#nine {
   grid-area: nine; }
 
-.eight {
+#eight {
   grid-area: eight; }
 
-.seven {
+#seven {
   grid-area: seven; }
 
-.six {
+#six {
   grid-area: six; }
 
-.five {
+#five {
   grid-area: five; }
 
-.for {
+#four {
   grid-area: for; }
 
-.three {
+#three {
   grid-area: three; }
 
-.two {
+#two {
   grid-area: two; }
 
-.one {
+#one {
   grid-area: one; }
 
-.zero {
+#zero {
   grid-area: zero; }
