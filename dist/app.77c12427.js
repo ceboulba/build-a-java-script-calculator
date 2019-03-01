@@ -137,12 +137,12 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (inputKey === "clear") {
       input = "0";
       display.innerText = input;
-    } else if (inputKey === ".") {
-      console.log("input => ", input); // input += inputKey
+    } else if (inputKey === "." && input[input.length - 1] !== ".") {
+      console.log("theInput => ", input[input.length - 1]);
+      input += inputKey;
     } else if (input[0] === "0") {
-      input = inputKey;
-      display.innerText = input;
-    } else {
+      input = inputKey; // display.innerText = input
+    } else if (inputKey.match(/[0 - 9]/g)) {
       input += inputKey;
       display.innerText = input;
     }
