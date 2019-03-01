@@ -6929,13 +6929,16 @@ label.panel-block {
 .calculatrice {
   display: grid;
   grid-template-areas: 'disp disp disp disp' 'ac ac divi mult' 'seven eight nine mini' 'for five six addi' 'one two three equ' 'zero zero dec equ';
-  max-width: 550px;
-  margin: auto; }
+  max-width: 20rem;
+  min-width: 15rem;
+  margin: auto;
+  border: 1px solid #646464;
+  border-radius: 1rem; }
 
 .bt {
   background-color: #dddddd;
   color: white;
-  border-radius: 6px;
+  border-radius: 1rem;
   border: 1px solid #646464;
   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
   display: block;

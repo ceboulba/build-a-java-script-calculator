@@ -12,14 +12,17 @@ $gris-clair: rgb(221, 221, 221);
     'for five six addi'
     'one two three equ'
     'zero zero dec equ';
-  max-width: 550px;
+  max-width: 20rem;
+  min-width: 15rem;
   margin: auto;
+  border: 1px solid $gris-fonce;
+  border-radius: 1rem;
 }
 
 .bt {
   background-color: $gris-clair;
   color: white;
-  border-radius: 6px;
+  border-radius: 1rem;
   border: 1px solid $gris-fonce;
   box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
   display: block;

@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', function() {
   let output = ' '
   const reg = /\./gm
 
+  //rend les chiffres clickable
   const buttons = [...document.querySelectorAll('.num')].map(button =>
     button.addEventListener('click', event => {
       handleClick(event)
@@ -21,6 +22,30 @@ document.addEventListener('DOMContentLoaded', function() {
     inputScreen.innerText = output
   }
 
+  //handle add
+  const add = document
+    .getElementById('add')
+    .addEventListener('click', event => {
+      if (input[output.length - 1] !== '+') {
+        input = '+'
+        display.innerText = input
+        output += '+'
+      }
+      return
+    })
+
+  // handle equal
+  const equal = document
+    .getElementById('equals')
+    .addEventListener('click', event => {
+      const result = eval(output)
+      console.log('result => ', result)
+      output += ' = ' + result
+      input = result
+      display.innerText = input
+    })
+
+  // handle clear button
   function reset() {
     console.log('on reset')
     input = '0'
@@ -32,29 +57,24 @@ document.addEventListener('DOMContentLoaded', function() {
   function handleClick(event) {
     const inputKey = event.target.value
     console.log('inputKey => ', inputKey)
-    if (input === '0') {
+    const testDeReg = input.match(reg)
+    console.log('testDeReg => ', testDeReg)
+    if (inputKey === '.' && testDeReg) {
+      return
+    } else if (input === '0' && inputKey !== '.') {
       input = inputKey
-      display.innerText = input
+    } else if (
+      input === '+' ||
+      input === '-' ||
+      input === '/' ||
+      input === '*'
+    ) {
+      input = inputKey
     } else {
-      display.innerText = input += inputKey
+      input += inputKey
     }
+    display.innerText = input
     operation(inputKey)
-    // if (inputKey === '=') {
-    //   input = eval(input)
-    //   display.innerText = input
-    // } else if (inputKey === 'clear') {
-    //   input = '0'
-    //   display.innerText = input
-    // } else if (inputKey === '.' && input[input.length - 1] !== '.') {
-    //   console.log('theInput => ', input[input.length - 1])
-    //   input += inputKey
-    // } else if (input[0] === '0') {
-    //   input = inputKey
-    //   // display.innerText = input
-    // } else if (inputKey.match(/[0 - 9]/g)) {
-    //   input += inputKey
-    //   display.innerText = input
-    // }
   }
 })
 
