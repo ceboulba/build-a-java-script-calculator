@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const display = document.getElementById("display")
   let input = "0"
   let output = ""
+  let info = document.getElementById("input")
   const reg = /\./gm
 
   //rend les chiffres clickable

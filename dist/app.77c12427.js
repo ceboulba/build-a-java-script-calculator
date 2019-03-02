@@ -119,6 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var display = document.getElementById("display");
   var input = "0";
   var output = "";
+  var info = document.getElementById("input");
   var reg = /\./gm; //rend les chiffres clickable
 
   var buttons = _toConsumableArray(document.querySelectorAll(".num")).map(function (button) {
@@ -269,7 +270,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52957" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63024" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
