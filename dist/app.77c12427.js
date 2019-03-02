@@ -118,87 +118,114 @@ document.addEventListener("DOMContentLoaded", function () {
   var inputScreen = document.getElementById("input");
   var display = document.getElementById("display");
   var input = "0";
-  var output = "0";
+  var output = "";
   var reg = /\./gm;
+  var regOperator = /\+|-|\*|\//gm; //rend les chiffres clickable
 
-  var buttons = _toConsumableArray(document.querySelectorAll("button")).map(function (button) {
+  var buttons = _toConsumableArray(document.querySelectorAll(".num")).map(function (button) {
     return button.addEventListener("click", function (event) {
       handleClick(event);
     });
   });
 
+  function operation(entree) {
+    output += entree;
+    inputScreen.innerText = output;
+  } //handle add
+
+
+  var add = document.getElementById("add").addEventListener("click", function (event) {
+    if (input[input.length - 1] === "+") {
+      return;
+    }
+
+    output += input;
+    output += "+";
+    input = "0";
+    display.innerText = "+";
+    console.log("output => ", output);
+  }); //handle substract
+
+  var substract = document.getElementById("subtract").addEventListener("click", function () {
+    if (input[input.length - 1] === "-") {
+      return;
+    }
+
+    output += input;
+    output += "-";
+    input = "0";
+    display.innerText = "-";
+    console.log("output => ", output);
+  }); //handle multiply
+
+  var multiply = document.getElementById("multiply").addEventListener("click", function () {
+    if (input[input.length - 1] === "x") {
+      return;
+    }
+
+    output += input;
+    output += "*";
+    input = "0";
+    display.innerText = "x";
+    console.log("output => ", output);
+  }); //handle divide
+
+  var divide = document.getElementById("divide").addEventListener("click", function () {
+    if (input[input.length - 1] === "/") {
+      return;
+    }
+
+    output += input;
+    output += "/";
+    input = "0";
+    display.innerText = "/";
+    console.log("output => ", output);
+  }); // handle equal
+
+  var equal = document.getElementById("equals").addEventListener("click", function (event) {
+    output += input;
+    console.log(output);
+    var reg = /\+|-|\*|\//gm;
+    var verif = output.match(reg);
+
+    if (output.length > 1 && verif) {
+      console.log(eval(output));
+      input = eval(output);
+      display.innerText = input;
+      output = "";
+      input = "0";
+    }
+
+    return;
+  }); // handle clear button
+
+  var clear = document.getElementById("clear").addEventListener("click", function () {
+    console.log("on reset");
+    input = "0";
+    output = " ";
+    display.innerText = input;
+    inputScreen.innerText = output;
+  }); //handle click number
+
   function handleClick(event) {
     var inputKey = event.target.value;
     console.log("inputKey => ", inputKey);
+    var testDeReg = input.match(reg);
+    console.log("testDeReg => ", testDeReg);
 
-    if (inputKey === "=") {
-      input = eval(input);
+    if (inputKey === "." && testDeReg) {
+      return;
+    } else if (input === "0" && inputKey !== ".") {
+      input = inputKey;
       display.innerText = input;
-    } else if (inputKey === "clear") {
-      input = "0";
-      display.innerText = input;
-    } else if (inputKey === "." && input[input.length - 1] !== ".") {
-      console.log("theInput => ", input[input.length - 1]);
-      input += inputKey;
-    } else if (input[0] === "0") {
-      input = inputKey; // display.innerText = input
-    } else if (inputKey.match(/[0 - 9]/g)) {
-      input += inputKey;
-      display.innerText = input;
+      return;
     }
 
+    input += inputKey;
     display.innerText = input;
+    console.log("input => ", input);
   }
-}); // let operation = []
-// let output = []
-// let result = document.querySelector('#display')
-// let resultat = ['0']
-// const display = document.querySelector('#display')
-// const nums = [...document.querySelectorAll('.num')].map(num =>
-//   num.addEventListener('click', e => {
-//     action(e)
-//   })
-// )
-// function daboum() {
-//   console.log('BOUM')
-// }
-// daboum()
-// const operators = [...document.querySelectorAll('.op')].map(op =>
-//   op.addEventListener('click', e => {
-//     operate(e)
-//   })
-// )
-// const clear = document
-//   .querySelector('#clear')
-//   .addEventListener('click', () => {
-//     operation = ['0']
-//     display.innerText = operation.join('')
-//   })
-// const equal = document.querySelector('.equ').addEventListener('click', () => {
-//   if (operation.length >= 1) {
-//     const temp = eval(operation.join(''))
-//     console.log(temp)
-//     display.innerHTML = temp
-//     operation = [temp]
-//   }
-//   return
-// })
-// const operate = operator => {
-//   if (operator.target.innerText === 'x') {
-//     operation.push('*')
-//   } else {
-//     operation.push(operator.target.innerText)
-//   }
-//   display.innerText = operation.join('')
-// }
-// function action(e) {
-//   if (operation[0] === '0') {
-//     operation.shift()
-//   }
-//   operation.push(e.target.innerText)
-//   display.innerText = operation.join('')
-//   console.log('operation => ', operation)
-// }
+});
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -226,7 +253,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63619" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52957" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

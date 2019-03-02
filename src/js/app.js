@@ -1,18 +1,16 @@
-document.addEventListener('DOMContentLoaded', function() {
-  console.log('hello')
+document.addEventListener("DOMContentLoaded", function() {
+  console.log("hello")
 
-  const inputScreen = document.getElementById('input')
-  const display = document.getElementById('display')
-  const clear = document
-    .getElementById('clear')
-    .addEventListener('click', reset)
-  let input = '0'
-  let output = ' '
+  const inputScreen = document.getElementById("input")
+  const display = document.getElementById("display")
+  let input = "0"
+  let output = ""
   const reg = /\./gm
+  const regOperator = /\+|-|\*|\//gm
 
   //rend les chiffres clickable
-  const buttons = [...document.querySelectorAll('.num')].map(button =>
-    button.addEventListener('click', event => {
+  const buttons = [...document.querySelectorAll(".num")].map(button =>
+    button.addEventListener("click", event => {
       handleClick(event)
     })
   )
@@ -24,115 +22,104 @@ document.addEventListener('DOMContentLoaded', function() {
 
   //handle add
   const add = document
-    .getElementById('add')
-    .addEventListener('click', event => {
-      if (input[output.length - 1] !== '+') {
-        input = '+'
-        display.innerText = input
-        output += '+'
+    .getElementById("add")
+    .addEventListener("click", event => {
+      if (input[input.length - 1] === "+") {
+        return
       }
-      return
+      output += input
+      output += "+"
+      input = "0"
+      display.innerText = "+"
+      console.log("output => ", output)
+    })
+
+  //handle substract
+  const substract = document
+    .getElementById("subtract")
+    .addEventListener("click", () => {
+      if (input[input.length - 1] === "-") {
+        return
+      }
+      output += input
+      output += "-"
+      input = "0"
+      display.innerText = "-"
+      console.log("output => ", output)
+    })
+
+  //handle multiply
+  const multiply = document
+    .getElementById("multiply")
+    .addEventListener("click", () => {
+      if (input[input.length - 1] === "x") {
+        return
+      }
+      output += input
+      output += "*"
+      input = "0"
+      display.innerText = "x"
+      console.log("output => ", output)
+    })
+
+  //handle divide
+  const divide = document
+    .getElementById("divide")
+    .addEventListener("click", () => {
+      if (input[input.length - 1] === "/") {
+        return
+      }
+      output += input
+      output += "/"
+      input = "0"
+      display.innerText = "/"
+      console.log("output => ", output)
     })
 
   // handle equal
   const equal = document
-    .getElementById('equals')
-    .addEventListener('click', event => {
-      const result = eval(output)
-      console.log('result => ', result)
-      output += ' = ' + result
-      input = result
-      display.innerText = input
+    .getElementById("equals")
+    .addEventListener("click", event => {
+      output += input
+      console.log(output)
+      const reg = /\+|-|\*|\//gm
+      const verif = output.match(reg)
+      if (output.length > 1 && verif) {
+        console.log(eval(output))
+        input = eval(output)
+        display.innerText = input
+        output = ""
+        input = "0"
+      }
+      return
     })
 
   // handle clear button
-  function reset() {
-    console.log('on reset')
-    input = '0'
-    output = ' '
-    display.innerText = input
-    inputScreen.innerText = output
-  }
+  const clear = document
+    .getElementById("clear")
+    .addEventListener("click", () => {
+      console.log("on reset")
+      input = "0"
+      output = " "
+      display.innerText = input
+      inputScreen.innerText = output
+    })
 
+  //handle click number
   function handleClick(event) {
     const inputKey = event.target.value
-    console.log('inputKey => ', inputKey)
+    console.log("inputKey => ", inputKey)
     const testDeReg = input.match(reg)
-    console.log('testDeReg => ', testDeReg)
-    if (inputKey === '.' && testDeReg) {
+    console.log("testDeReg => ", testDeReg)
+    if (inputKey === "." && testDeReg) {
       return
-    } else if (input === '0' && inputKey !== '.') {
+    } else if (input === "0" && inputKey !== ".") {
       input = inputKey
-    } else if (
-      input === '+' ||
-      input === '-' ||
-      input === '/' ||
-      input === '*'
-    ) {
-      input = inputKey
-    } else {
-      input += inputKey
+      display.innerText = input
+      return
     }
+    input += inputKey
     display.innerText = input
-    operation(inputKey)
+    console.log("input => ", input)
   }
 })
-
-// let operation = []
-// let output = []
-// let result = document.querySelector('#display')
-// let resultat = ['0']
-
-// const display = document.querySelector('#display')
-
-// const nums = [...document.querySelectorAll('.num')].map(num =>
-//   num.addEventListener('click', e => {
-//     action(e)
-//   })
-// )
-
-// function daboum() {
-//   console.log('BOUM')
-// }
-// daboum()
-
-// const operators = [...document.querySelectorAll('.op')].map(op =>
-//   op.addEventListener('click', e => {
-//     operate(e)
-//   })
-// )
-
-// const clear = document
-//   .querySelector('#clear')
-//   .addEventListener('click', () => {
-//     operation = ['0']
-//     display.innerText = operation.join('')
-//   })
-
-// const equal = document.querySelector('.equ').addEventListener('click', () => {
-//   if (operation.length >= 1) {
-//     const temp = eval(operation.join(''))
-//     console.log(temp)
-//     display.innerHTML = temp
-//     operation = [temp]
-//   }
-//   return
-// })
-
-// const operate = operator => {
-//   if (operator.target.innerText === 'x') {
-//     operation.push('*')
-//   } else {
-//     operation.push(operator.target.innerText)
-//   }
-//   display.innerText = operation.join('')
-// }
-
-// function action(e) {
-//   if (operation[0] === '0') {
-//     operation.shift()
-//   }
-//   operation.push(e.target.innerText)
-//   display.innerText = operation.join('')
-//   console.log('operation => ', operation)
-// }
