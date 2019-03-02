@@ -119,8 +119,7 @@ document.addEventListener("DOMContentLoaded", function () {
   var display = document.getElementById("display");
   var input = "0";
   var output = "";
-  var reg = /\./gm;
-  var regOperator = /\+|-|\*|\//gm; //rend les chiffres clickable
+  var reg = /\./gm; //rend les chiffres clickable
 
   var buttons = _toConsumableArray(document.querySelectorAll(".num")).map(function (button) {
     return button.addEventListener("click", function (event) {
@@ -131,53 +130,70 @@ document.addEventListener("DOMContentLoaded", function () {
   function operation(entree) {
     output += entree;
     inputScreen.innerText = output;
+  } //handle repeat operator
+
+
+  function onlyOneOperator(op) {
+    var n = output.length - 1;
+    console.log("output dans onlyOneOperator => ", output[n]);
+
+    if (output[n] === "/" || output[n] === "*" || output[n] === "-" || output[n] === "+") {
+      output = output.slice(0, n);
+      console.log("output apres modif => ", output);
+    }
+
+    return;
   } //handle add
 
 
   var add = document.getElementById("add").addEventListener("click", function (event) {
-    if (input[input.length - 1] === "+") {
+    if (output[output.length - 1] === "+") {
       return;
     }
 
     output += input;
+    onlyOneOperator("+");
     output += "+";
-    input = "0";
+    input = "";
     display.innerText = "+";
     console.log("output => ", output);
   }); //handle substract
 
   var substract = document.getElementById("subtract").addEventListener("click", function () {
-    if (input[input.length - 1] === "-") {
+    if (output[output.length - 1] === "-") {
       return;
     }
 
     output += input;
+    onlyOneOperator("-");
     output += "-";
-    input = "0";
+    input = "";
     display.innerText = "-";
     console.log("output => ", output);
   }); //handle multiply
 
   var multiply = document.getElementById("multiply").addEventListener("click", function () {
-    if (input[input.length - 1] === "x") {
+    if (output[output.length - 1] === "*") {
       return;
     }
 
     output += input;
+    onlyOneOperator("*");
     output += "*";
-    input = "0";
+    input = "";
     display.innerText = "x";
     console.log("output => ", output);
   }); //handle divide
 
   var divide = document.getElementById("divide").addEventListener("click", function () {
-    if (input[input.length - 1] === "/") {
+    if (output[output.length - 1] === "/") {
       return;
     }
 
     output += input;
+    onlyOneOperator("/");
     output += "/";
-    input = "0";
+    input = "";
     display.innerText = "/";
     console.log("output => ", output);
   }); // handle equal
@@ -192,8 +208,8 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(eval(output));
       input = eval(output);
       display.innerText = input;
-      output = "";
-      input = "0";
+      output = input;
+      input = "";
     }
 
     return;

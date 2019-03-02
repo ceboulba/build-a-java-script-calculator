@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function() {
   let input = "0"
   let output = ""
   const reg = /\./gm
-  const regOperator = /\+|-|\*|\//gm
 
   //rend les chiffres clickable
   const buttons = [...document.querySelectorAll(".num")].map(button =>
@@ -20,16 +19,33 @@ document.addEventListener("DOMContentLoaded", function() {
     inputScreen.innerText = output
   }
 
+  //handle repeat operator
+  function onlyOneOperator(op) {
+    const n = output.length - 1
+    console.log("output dans onlyOneOperator => ", output[n])
+    if (
+      output[n] === "/" ||
+      output[n] === "*" ||
+      output[n] === "-" ||
+      output[n] === "+"
+    ) {
+      output = output.slice(0, n)
+      console.log("output apres modif => ", output)
+    }
+    return
+  }
+
   //handle add
   const add = document
     .getElementById("add")
     .addEventListener("click", event => {
-      if (input[input.length - 1] === "+") {
+      if (output[output.length - 1] === "+") {
         return
       }
       output += input
+      onlyOneOperator("+")
       output += "+"
-      input = "0"
+      input = ""
       display.innerText = "+"
       console.log("output => ", output)
     })
@@ -38,12 +54,13 @@ document.addEventListener("DOMContentLoaded", function() {
   const substract = document
     .getElementById("subtract")
     .addEventListener("click", () => {
-      if (input[input.length - 1] === "-") {
+      if (output[output.length - 1] === "-") {
         return
       }
       output += input
+      onlyOneOperator("-")
       output += "-"
-      input = "0"
+      input = ""
       display.innerText = "-"
       console.log("output => ", output)
     })
@@ -52,12 +69,13 @@ document.addEventListener("DOMContentLoaded", function() {
   const multiply = document
     .getElementById("multiply")
     .addEventListener("click", () => {
-      if (input[input.length - 1] === "x") {
+      if (output[output.length - 1] === "*") {
         return
       }
       output += input
+      onlyOneOperator("*")
       output += "*"
-      input = "0"
+      input = ""
       display.innerText = "x"
       console.log("output => ", output)
     })
@@ -66,12 +84,13 @@ document.addEventListener("DOMContentLoaded", function() {
   const divide = document
     .getElementById("divide")
     .addEventListener("click", () => {
-      if (input[input.length - 1] === "/") {
+      if (output[output.length - 1] === "/") {
         return
       }
       output += input
+      onlyOneOperator("/")
       output += "/"
-      input = "0"
+      input = ""
       display.innerText = "/"
       console.log("output => ", output)
     })
@@ -88,8 +107,8 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(eval(output))
         input = eval(output)
         display.innerText = input
-        output = ""
-        input = "0"
+        output = input
+        input = ""
       }
       return
     })
