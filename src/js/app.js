@@ -20,10 +20,12 @@ document.addEventListener("DOMContentLoaded", function() {
   function updateScreen(input) {
     current += input
     inputScreen.innerText = current
+    doingCalc = true
   }
 
   //handle repeat operator
   function onlyOneOperator(op) {
+    console.log("output dans repeat op => ", output)
     const n = output.length - 1
     console.log("output dans onlyOneOperator => ", output[n])
     if (
@@ -35,6 +37,7 @@ document.addEventListener("DOMContentLoaded", function() {
       output = output.slice(0, n)
       console.log("output apres modif => ", output)
     }
+    console.log("IMPOSSIBLE")
     return
   }
 
@@ -42,7 +45,8 @@ document.addEventListener("DOMContentLoaded", function() {
   const add = document
     .getElementById("add")
     .addEventListener("click", event => {
-      if (output[output.length - 1] === "+") {
+      console.log("you want add")
+      if (current[current.length - 2] === "+") {
         return
       }
       output += input
@@ -51,7 +55,7 @@ document.addEventListener("DOMContentLoaded", function() {
       input = ""
       display.innerText = "+"
       updateScreen(" + ")
-      doingCalc = true
+      //doingCalc = true
       console.log("output => ", output)
     })
 
@@ -59,7 +63,8 @@ document.addEventListener("DOMContentLoaded", function() {
   const substract = document
     .getElementById("subtract")
     .addEventListener("click", () => {
-      if (output[output.length - 1] === "-") {
+      if (current[current.length - 2] === "-") {
+        alert("Impossible")
         return
       }
       output += input
@@ -76,7 +81,8 @@ document.addEventListener("DOMContentLoaded", function() {
   const multiply = document
     .getElementById("multiply")
     .addEventListener("click", () => {
-      if (output[output.length - 1] === "*") {
+      if (current[current.length - 2] === "*") {
+        alert("Impossible")
         return
       }
       output += input
@@ -93,7 +99,8 @@ document.addEventListener("DOMContentLoaded", function() {
   const divide = document
     .getElementById("divide")
     .addEventListener("click", () => {
-      if (output[output.length - 1] === "/") {
+      if (current[current.length - 2] === "/") {
+        alert("Impossible")
         return
       }
       output += input
@@ -110,6 +117,16 @@ document.addEventListener("DOMContentLoaded", function() {
   const equal = document
     .getElementById("equals")
     .addEventListener("click", event => {
+      if (
+        current[current.length - 2] === "+" ||
+        current[current.length - 2] === "-" ||
+        current[current.length - 2] === "/" ||
+        current[current.length - 2] === "*"
+      ) {
+        alert("Impossible")
+        return
+      }
+
       output += input
       console.log(output)
       const reg = /\+|-|\*|\//gm
@@ -157,6 +174,7 @@ document.addEventListener("DOMContentLoaded", function() {
       input += inputKey
       display.innerText = input
       updateScreen(inputKey)
+      doingCalc = true
       console.log("input => ", input)
     }
     return
