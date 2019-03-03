@@ -5,7 +5,6 @@ document.addEventListener("DOMContentLoaded", function() {
   const display = document.getElementById("display")
   let input = "0"
   let output = ""
-  let info = document.getElementById("input")
   const reg = /\./gm
 
   //rend les chiffres clickable
@@ -15,9 +14,11 @@ document.addEventListener("DOMContentLoaded", function() {
     })
   )
 
-  function operation(entree) {
-    output += entree
-    inputScreen.innerText = output
+  //update inputScreen
+  function updateScreen(input) {
+    const current = `${input} & ${inputScreen.innerText}`
+    console.log("current inputScreen => ", current)
+    inputScreen.innerText = current
   }
 
   //handle repeat operator
@@ -48,6 +49,7 @@ document.addEventListener("DOMContentLoaded", function() {
       output += "+"
       input = ""
       display.innerText = "+"
+      updateScreen("+")
       console.log("output => ", output)
     })
 
@@ -140,6 +142,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     input += inputKey
     display.innerText = input
+    updateScreen(inputKey)
     console.log("input => ", input)
   }
 })

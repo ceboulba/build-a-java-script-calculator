@@ -119,18 +119,19 @@ document.addEventListener("DOMContentLoaded", function () {
   var display = document.getElementById("display");
   var input = "0";
   var output = "";
-  var info = document.getElementById("input");
   var reg = /\./gm; //rend les chiffres clickable
 
   var buttons = _toConsumableArray(document.querySelectorAll(".num")).map(function (button) {
     return button.addEventListener("click", function (event) {
       handleClick(event);
     });
-  });
+  }); //update inputScreen
 
-  function operation(entree) {
-    output += entree;
-    inputScreen.innerText = output;
+
+  function updateScreen(input) {
+    var current = "".concat(input, " & ").concat(inputScreen.innerText);
+    console.log("current inputScreen => ", current);
+    inputScreen.innerText = current;
   } //handle repeat operator
 
 
@@ -157,6 +158,7 @@ document.addEventListener("DOMContentLoaded", function () {
     output += "+";
     input = "";
     display.innerText = "+";
+    updateScreen("+");
     console.log("output => ", output);
   }); //handle substract
 
@@ -240,6 +242,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     input += inputKey;
     display.innerText = input;
+    updateScreen(inputKey);
     console.log("input => ", input);
   }
 });
@@ -270,7 +273,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "63024" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65449" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
