@@ -119,7 +119,9 @@ document.addEventListener("DOMContentLoaded", function () {
   var display = document.getElementById("display");
   var input = "0";
   var output = "";
-  var reg = /\./gm; //rend les chiffres clickable
+  var reg = /\./gm;
+  var current = "";
+  var doingCalc = true; //rend les chiffres clickable
 
   var buttons = _toConsumableArray(document.querySelectorAll(".num")).map(function (button) {
     return button.addEventListener("click", function (event) {
@@ -129,8 +131,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
   function updateScreen(input) {
-    var current = "".concat(input, " & ").concat(inputScreen.innerText);
-    console.log("current inputScreen => ", current);
+    current += input;
     inputScreen.innerText = current;
   } //handle repeat operator
 
@@ -158,7 +159,8 @@ document.addEventListener("DOMContentLoaded", function () {
     output += "+";
     input = "";
     display.innerText = "+";
-    updateScreen("+");
+    updateScreen(" + ");
+    doingCalc = true;
     console.log("output => ", output);
   }); //handle substract
 
@@ -172,6 +174,8 @@ document.addEventListener("DOMContentLoaded", function () {
     output += "-";
     input = "";
     display.innerText = "-";
+    updateScreen(" - ");
+    doingCalc = true;
     console.log("output => ", output);
   }); //handle multiply
 
@@ -185,6 +189,8 @@ document.addEventListener("DOMContentLoaded", function () {
     output += "*";
     input = "";
     display.innerText = "x";
+    updateScreen(" x ");
+    doingCalc = true;
     console.log("output => ", output);
   }); //handle divide
 
@@ -198,6 +204,8 @@ document.addEventListener("DOMContentLoaded", function () {
     output += "/";
     input = "";
     display.innerText = "/";
+    updateScreen(" / ");
+    doingCalc = true;
     console.log("output => ", output);
   }); // handle equal
 
@@ -211,8 +219,10 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log(eval(output));
       input = eval(output);
       display.innerText = input;
+      updateScreen(" = " + input);
       output = input;
       input = "";
+      doingCalc = false;
     }
 
     return;
@@ -221,29 +231,36 @@ document.addEventListener("DOMContentLoaded", function () {
   var clear = document.getElementById("clear").addEventListener("click", function () {
     console.log("on reset");
     input = "0";
-    output = " ";
+    output = "";
+    current = "";
     display.innerText = input;
-    inputScreen.innerText = output;
+    inputScreen.innerText = current;
+    doingCalc = true;
   }); //handle click number
 
   function handleClick(event) {
-    var inputKey = event.target.value;
-    console.log("inputKey => ", inputKey);
-    var testDeReg = input.match(reg);
-    console.log("testDeReg => ", testDeReg);
+    if (doingCalc) {
+      var inputKey = event.target.value;
+      console.log("inputKey => ", inputKey);
+      var testDeReg = input.match(reg);
+      console.log("testDeReg => ", testDeReg);
 
-    if (inputKey === "." && testDeReg) {
-      return;
-    } else if (input === "0" && inputKey !== ".") {
-      input = inputKey;
+      if (inputKey === "." && testDeReg) {
+        return;
+      } else if (input === "0" && inputKey !== ".") {
+        input = inputKey;
+        display.innerText = input;
+        updateScreen(inputKey);
+        return;
+      }
+
+      input += inputKey;
       display.innerText = input;
-      return;
+      updateScreen(inputKey);
+      console.log("input => ", input);
     }
 
-    input += inputKey;
-    display.innerText = input;
-    updateScreen(inputKey);
-    console.log("input => ", input);
+    return;
   }
 });
 },{}],"node_modules/parcel-bundler/src/builtins/hmr-runtime.js":[function(require,module,exports) {
@@ -273,7 +290,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "65449" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "49783" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);

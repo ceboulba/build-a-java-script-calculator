@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function() {
   let input = "0"
   let output = ""
   const reg = /\./gm
+  let current = ""
+  let doingCalc = true
 
   //rend les chiffres clickable
   const buttons = [...document.querySelectorAll(".num")].map(button =>
@@ -16,8 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   //update inputScreen
   function updateScreen(input) {
-    const current = `${input} & ${inputScreen.innerText}`
-    console.log("current inputScreen => ", current)
+    current += input
     inputScreen.innerText = current
   }
 
@@ -49,7 +50,8 @@ document.addEventListener("DOMContentLoaded", function() {
       output += "+"
       input = ""
       display.innerText = "+"
-      updateScreen("+")
+      updateScreen(" + ")
+      doingCalc = true
       console.log("output => ", output)
     })
 
@@ -65,6 +67,8 @@ document.addEventListener("DOMContentLoaded", function() {
       output += "-"
       input = ""
       display.innerText = "-"
+      updateScreen(" - ")
+      doingCalc = true
       console.log("output => ", output)
     })
 
@@ -80,6 +84,8 @@ document.addEventListener("DOMContentLoaded", function() {
       output += "*"
       input = ""
       display.innerText = "x"
+      updateScreen(" x ")
+      doingCalc = true
       console.log("output => ", output)
     })
 
@@ -95,6 +101,8 @@ document.addEventListener("DOMContentLoaded", function() {
       output += "/"
       input = ""
       display.innerText = "/"
+      updateScreen(" / ")
+      doingCalc = true
       console.log("output => ", output)
     })
 
@@ -110,8 +118,10 @@ document.addEventListener("DOMContentLoaded", function() {
         console.log(eval(output))
         input = eval(output)
         display.innerText = input
+        updateScreen(" = " + input)
         output = input
         input = ""
+        doingCalc = false
       }
       return
     })
@@ -122,27 +132,33 @@ document.addEventListener("DOMContentLoaded", function() {
     .addEventListener("click", () => {
       console.log("on reset")
       input = "0"
-      output = " "
+      output = ""
+      current = ""
       display.innerText = input
-      inputScreen.innerText = output
+      inputScreen.innerText = current
+      doingCalc = true
     })
 
   //handle click number
   function handleClick(event) {
-    const inputKey = event.target.value
-    console.log("inputKey => ", inputKey)
-    const testDeReg = input.match(reg)
-    console.log("testDeReg => ", testDeReg)
-    if (inputKey === "." && testDeReg) {
-      return
-    } else if (input === "0" && inputKey !== ".") {
-      input = inputKey
+    if (doingCalc) {
+      const inputKey = event.target.value
+      console.log("inputKey => ", inputKey)
+      const testDeReg = input.match(reg)
+      console.log("testDeReg => ", testDeReg)
+      if (inputKey === "." && testDeReg) {
+        return
+      } else if (input === "0" && inputKey !== ".") {
+        input = inputKey
+        display.innerText = input
+        updateScreen(inputKey)
+        return
+      }
+      input += inputKey
       display.innerText = input
-      return
+      updateScreen(inputKey)
+      console.log("input => ", input)
     }
-    input += inputKey
-    display.innerText = input
-    updateScreen(inputKey)
-    console.log("input => ", input)
+    return
   }
 })
