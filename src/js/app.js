@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
   function updateScreen(input) {
     current += input
     inputScreen.innerText = current
-    doingCalc = true
+    //doingCalc = true
   }
 
   //handle repeat operator
