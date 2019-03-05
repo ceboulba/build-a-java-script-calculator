@@ -26,6 +26,10 @@ document.addEventListener('DOMContentLoaded', function() {
   function updateScreen(input) {
     current += input
     inputScreen.innerText = current
+<<<<<<< HEAD
+=======
+    doingCalc = true
+>>>>>>> parent of 7cc4c77... Update app.js
   }
 
   //handle repeat operator
