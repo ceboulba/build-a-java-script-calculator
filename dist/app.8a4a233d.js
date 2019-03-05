@@ -107,14 +107,21 @@ parcelRequire = (function (modules, cache, entry, globalName) {
 function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 document.addEventListener('DOMContentLoaded', function () {
-  console.log('hello');
-
+  //gere les zone d'affichage
   var inputScreen = document.getElementById('input');
   var display = document.getElementById('display');
-  var clear = document.getElementById('clear').addEventListener('click', reset);
+
+  //init les valeurs des variables utiles
   var input = '0';
-  var output = ' ';
+  var output = '';
+  var current = '';
+
+  //quellques regEx necessaires
   var reg = /\./gm;
+  var regOp = /[*\-+\/]/gi;
+
+  //valide la possibilitée de calculer
+  var doingCalc = true;
 
   //rend les chiffres clickable
   var buttons = [].concat(_toConsumableArray(document.querySelectorAll('.num'))).map(function (button) {
@@ -123,116 +130,147 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   });
 
-  function operation(entree) {
-    output += entree;
-    inputScreen.innerText = output;
+  //update inputScreen
+  function updateScreen(input) {
+    current += input;
+    inputScreen.innerText = current;
+  }
+
+  //handle repeat operator
+  function onlyOneOperator(op) {
+    if (output.length === 0) {
+      return;
+    }
+    console.log('+'.match(regOp));
+    var n = output.length - 1;
+    if (output[n] === '/' || output[n] === '*' || output[n] === '-' || output[n] === '+') {
+      output = output.slice(0, n);
+      console.log('output apres modif => ', output);
+    }
+    console.log('IMPOSSIBLE');
+    return;
   }
 
   //handle add
   var add = document.getElementById('add').addEventListener('click', function (event) {
-    if (input[output.length - 1] !== '+') {
-      input = '+';
-      display.innerText = input;
-      output += '+';
+    console.log('you want add');
+    if (current[current.length - 2] === '+') {
+      return;
     }
-    return;
+    output += input;
+    onlyOneOperator('+');
+    output += '+';
+    input = '';
+    display.innerText = '+';
+    updateScreen(' + ');
+    //doingCalc = true
+    console.log('output => ', output);
+  });
+
+  //handle substract
+  var substract = document.getElementById('subtract').addEventListener('click', function () {
+    if (current[current.length - 2] === '-') {
+      alert('Impossible');
+      return;
+    }
+    output += input;
+    onlyOneOperator('-');
+    output += '-';
+    input = '';
+    display.innerText = '-';
+    updateScreen(' - ');
+    doingCalc = true;
+    console.log('output => ', output);
+  });
+
+  //handle multiply
+  var multiply = document.getElementById('multiply').addEventListener('click', function () {
+    if (current[current.length - 2] === '*') {
+      alert('Impossible');
+      return;
+    }
+    output += input;
+    onlyOneOperator('*');
+    output += '*';
+    input = '';
+    display.innerText = 'x';
+    updateScreen(' x ');
+    doingCalc = true;
+    console.log('output => ', output);
+  });
+
+  //handle divide
+  var divide = document.getElementById('divide').addEventListener('click', function () {
+    if (current[current.length - 2] === '/') {
+      alert('Impossible');
+      return;
+    }
+    output += input;
+    onlyOneOperator('/');
+    output += '/';
+    input = '';
+    display.innerText = '/';
+    updateScreen(' / ');
+    doingCalc = true;
+    console.log('output => ', output);
   });
 
   // handle equal
   var equal = document.getElementById('equals').addEventListener('click', function (event) {
-    var result = eval(output);
-    console.log('result => ', result);
-    output += ' = ' + result;
-    input = result;
-    display.innerText = input;
+    if (current[current.length - 2] === '+' || current[current.length - 2] === '-' || current[current.length - 2] === '/' || current[current.length - 2] === '*') {
+      alert('Impossible');
+      return;
+    }
+
+    output += input;
+    console.log(output);
+    var reg = /\+|-|\*|\//gm;
+    var verif = output.match(reg);
+    if (output.length > 1 && verif) {
+      console.log(eval(output));
+      input = Math.floor(eval(output) * 10000) / 10000;
+      display.innerText = input;
+      updateScreen(' = ' + input);
+      output = input;
+      input = '';
+      doingCalc = false;
+    }
+    return;
   });
 
   // handle clear button
-  function reset() {
+  var clear = document.getElementById('clear').addEventListener('click', function () {
     console.log('on reset');
     input = '0';
-    output = ' ';
+    output = '';
+    current = '';
     display.innerText = input;
-    inputScreen.innerText = output;
-  }
+    inputScreen.innerText = current;
+    doingCalc = true;
+  });
 
+  //handle click number
   function handleClick(event) {
-    var inputKey = event.target.value;
-    console.log('inputKey => ', inputKey);
-    var testDeReg = input.match(reg);
-    console.log('testDeReg => ', testDeReg);
-    if (inputKey === '.' && testDeReg) {
-      return;
-    } else if (input === '0' && inputKey !== '.') {
-      input = inputKey;
-    } else if (input === '+' || input === '-' || input === '/' || input === '*') {
-      input = inputKey;
-    } else {
+    if (doingCalc) {
+      var inputKey = event.target.value;
+      var testDeReg = input.match(reg);
+      if (inputKey === '.' && testDeReg) {
+        return;
+      } else if (input === '0' && inputKey !== '.') {
+        input = inputKey;
+        display.innerText = input;
+        updateScreen(inputKey);
+        return;
+      }
       input += inputKey;
+      display.innerText = input;
+      updateScreen(inputKey);
+      doingCalc = true;
+      console.log('input => ', input);
     }
-    display.innerText = input;
-    operation(inputKey);
+    return;
   }
 });
-
-// let operation = []
-// let output = []
-// let result = document.querySelector('#display')
-// let resultat = ['0']
-
-// const display = document.querySelector('#display')
-
-// const nums = [...document.querySelectorAll('.num')].map(num =>
-//   num.addEventListener('click', e => {
-//     action(e)
-//   })
-// )
-
-// function daboum() {
-//   console.log('BOUM')
-// }
-// daboum()
-
-// const operators = [...document.querySelectorAll('.op')].map(op =>
-//   op.addEventListener('click', e => {
-//     operate(e)
-//   })
-// )
-
-// const clear = document
-//   .querySelector('#clear')
-//   .addEventListener('click', () => {
-//     operation = ['0']
-//     display.innerText = operation.join('')
-//   })
-
-// const equal = document.querySelector('.equ').addEventListener('click', () => {
-//   if (operation.length >= 1) {
-//     const temp = eval(operation.join(''))
-//     console.log(temp)
-//     display.innerHTML = temp
-//     operation = [temp]
-//   }
-//   return
-// })
-
-// const operate = operator => {
-//   if (operator.target.innerText === 'x') {
-//     operation.push('*')
-//   } else {
-//     operation.push(operator.target.innerText)
-//   }
-//   display.innerText = operation.join('')
-// }
-
-// function action(e) {
-//   if (operation[0] === '0') {
-//     operation.shift()
-//   }
-//   operation.push(e.target.innerText)
-//   display.innerText = operation.join('')
-//   console.log('operation => ', operation)
-// }
 },{}],"C:\\Users\\antoi\\AppData\\Roaming\\npm\\node_modules\\parcel-bundler\\src\\builtins\\hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
@@ -262,7 +300,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '57100' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '56136' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
