@@ -134,43 +134,38 @@ document.addEventListener('DOMContentLoaded', function () {
   function updateScreen(input) {
     current += input;
     inputScreen.innerText = current;
+
+    doingCalc = true;
   }
 
   //handle repeat operator
   function onlyOneOperator(op) {
-    if (output.length === 0) {
-      return;
-    }
-    console.log('+'.match(regOp));
     var n = output.length - 1;
     if (output[n] === '/' || output[n] === '*' || output[n] === '-' || output[n] === '+') {
       output = output.slice(0, n);
       console.log('output apres modif => ', output);
     }
-    console.log('IMPOSSIBLE');
     return;
   }
 
   //handle add
-  var add = document.getElementById('add').addEventListener('click', function (event) {
-    console.log('you want add');
-    if (current[current.length - 2] === '+') {
+  var add = document.getElementById("add").addEventListener("click", function (event) {
+    if (output[output.length - 1] === "+") {
       return;
     }
     output += input;
-    onlyOneOperator('+');
-    output += '+';
-    input = '';
-    display.innerText = '+';
-    updateScreen(' + ');
-    //doingCalc = true
-    console.log('output => ', output);
+    onlyOneOperator("+");
+    output += "+";
+    input = "";
+    display.innerText = "+";
+    updateScreen(" + ");
+    doingCalc = true;
+    console.log("output => ", output);
   });
 
   //handle substract
-  var substract = document.getElementById('subtract').addEventListener('click', function () {
-    if (current[current.length - 2] === '-') {
-      alert('Impossible');
+  var substract = document.getElementById("subtract").addEventListener("click", function () {
+    if (output[output.length - 1] === "-") {
       return;
     }
     output += input;
@@ -184,9 +179,8 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   //handle multiply
-  var multiply = document.getElementById('multiply').addEventListener('click', function () {
-    if (current[current.length - 2] === '*') {
-      alert('Impossible');
+  var multiply = document.getElementById("multiply").addEventListener("click", function () {
+    if (output[output.length - 1] === "*") {
       return;
     }
     output += input;
@@ -200,9 +194,8 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   //handle divide
-  var divide = document.getElementById('divide').addEventListener('click', function () {
-    if (current[current.length - 2] === '/') {
-      alert('Impossible');
+  var divide = document.getElementById("divide").addEventListener("click", function () {
+    if (output[output.length - 1] === "/") {
       return;
     }
     output += input;
@@ -216,12 +209,7 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   // handle equal
-  var equal = document.getElementById('equals').addEventListener('click', function (event) {
-    if (current[current.length - 2] === '+' || current[current.length - 2] === '-' || current[current.length - 2] === '/' || current[current.length - 2] === '*') {
-      alert('Impossible');
-      return;
-    }
-
+  var equal = document.getElementById("equals").addEventListener("click", function (event) {
     output += input;
     console.log(output);
     var reg = /\+|-|\*|\//gm;
@@ -265,8 +253,7 @@ document.addEventListener('DOMContentLoaded', function () {
       input += inputKey;
       display.innerText = input;
       updateScreen(inputKey);
-      doingCalc = true;
-      console.log('input => ', input);
+      console.log("input => ", input);
     }
     return;
   }
@@ -300,7 +287,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = '' || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + '56136' + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + '57090' + '/');
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
 
