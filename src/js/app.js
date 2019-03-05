@@ -27,17 +27,23 @@ document.addEventListener('DOMContentLoaded', function() {
     current += input
     inputScreen.innerText = current
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
     doingCalc = true
 >>>>>>> parent of 7cc4c77... Update app.js
+=======
+>>>>>>> parent of 03f3a59... debug
   }
 
   //handle repeat operator
   function onlyOneOperator(op) {
+<<<<<<< HEAD
     if (output.length === 0) {
       return
     }
     console.log('+'.match(regOp))
+=======
+>>>>>>> parent of 03f3a59... debug
     const n = output.length - 1
     if (
       output[n] === '/' ||
@@ -48,12 +54,16 @@ document.addEventListener('DOMContentLoaded', function() {
       output = output.slice(0, n)
       console.log('output apres modif => ', output)
     }
+<<<<<<< HEAD
     console.log('IMPOSSIBLE')
+=======
+>>>>>>> parent of 03f3a59... debug
     return
   }
 
   //handle add
   const add = document
+<<<<<<< HEAD
     .getElementById('add')
     .addEventListener('click', event => {
       console.log('you want add')
@@ -68,14 +78,35 @@ document.addEventListener('DOMContentLoaded', function() {
       updateScreen(' + ')
       //doingCalc = true
       console.log('output => ', output)
+=======
+    .getElementById("add")
+    .addEventListener("click", event => {
+      if (output[output.length - 1] === "+") {
+        return
+      }
+      output += input
+      onlyOneOperator("+")
+      output += "+"
+      input = ""
+      display.innerText = "+"
+      updateScreen(" + ")
+      doingCalc = true
+      console.log("output => ", output)
+>>>>>>> parent of 03f3a59... debug
     })
 
   //handle substract
   const substract = document
+<<<<<<< HEAD
     .getElementById('subtract')
     .addEventListener('click', () => {
       if (current[current.length - 2] === '-') {
         alert('Impossible')
+=======
+    .getElementById("subtract")
+    .addEventListener("click", () => {
+      if (output[output.length - 1] === "-") {
+>>>>>>> parent of 03f3a59... debug
         return
       }
       output += input
@@ -90,10 +121,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
   //handle multiply
   const multiply = document
+<<<<<<< HEAD
     .getElementById('multiply')
     .addEventListener('click', () => {
       if (current[current.length - 2] === '*') {
         alert('Impossible')
+=======
+    .getElementById("multiply")
+    .addEventListener("click", () => {
+      if (output[output.length - 1] === "*") {
+>>>>>>> parent of 03f3a59... debug
         return
       }
       output += input
@@ -108,10 +145,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
   //handle divide
   const divide = document
+<<<<<<< HEAD
     .getElementById('divide')
     .addEventListener('click', () => {
       if (current[current.length - 2] === '/') {
         alert('Impossible')
+=======
+    .getElementById("divide")
+    .addEventListener("click", () => {
+      if (output[output.length - 1] === "/") {
+>>>>>>> parent of 03f3a59... debug
         return
       }
       output += input
@@ -126,6 +169,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // handle equal
   const equal = document
+<<<<<<< HEAD
     .getElementById('equals')
     .addEventListener('click', event => {
       if (
@@ -138,6 +182,10 @@ document.addEventListener('DOMContentLoaded', function() {
         return
       }
 
+=======
+    .getElementById("equals")
+    .addEventListener("click", event => {
+>>>>>>> parent of 03f3a59... debug
       output += input
       console.log(output)
       const reg = /\+|-|\*|\//gm
@@ -183,8 +231,12 @@ document.addEventListener('DOMContentLoaded', function() {
       input += inputKey
       display.innerText = input
       updateScreen(inputKey)
+<<<<<<< HEAD
       doingCalc = true
       console.log('input => ', input)
+=======
+      console.log("input => ", input)
+>>>>>>> parent of 03f3a59... debug
     }
     return
   }

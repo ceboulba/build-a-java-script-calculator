@@ -133,12 +133,10 @@ document.addEventListener("DOMContentLoaded", function () {
   function updateScreen(input) {
     current += input;
     inputScreen.innerText = current;
-    doingCalc = true;
   } //handle repeat operator
 
 
   function onlyOneOperator(op) {
-    console.log("output dans repeat op => ", output);
     var n = output.length - 1;
     console.log("output dans onlyOneOperator => ", output[n]);
 
@@ -147,15 +145,12 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("output apres modif => ", output);
     }
 
-    console.log("IMPOSSIBLE");
     return;
   } //handle add
 
 
   var add = document.getElementById("add").addEventListener("click", function (event) {
-    console.log("you want add");
-
-    if (current[current.length - 2] === "+") {
+    if (output[output.length - 1] === "+") {
       return;
     }
 
@@ -164,14 +159,13 @@ document.addEventListener("DOMContentLoaded", function () {
     output += "+";
     input = "";
     display.innerText = "+";
-    updateScreen(" + "); //doingCalc = true
-
+    updateScreen(" + ");
+    doingCalc = true;
     console.log("output => ", output);
   }); //handle substract
 
   var substract = document.getElementById("subtract").addEventListener("click", function () {
-    if (current[current.length - 2] === "-") {
-      alert("Impossible");
+    if (output[output.length - 1] === "-") {
       return;
     }
 
@@ -186,8 +180,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }); //handle multiply
 
   var multiply = document.getElementById("multiply").addEventListener("click", function () {
-    if (current[current.length - 2] === "*") {
-      alert("Impossible");
+    if (output[output.length - 1] === "*") {
       return;
     }
 
@@ -202,8 +195,7 @@ document.addEventListener("DOMContentLoaded", function () {
   }); //handle divide
 
   var divide = document.getElementById("divide").addEventListener("click", function () {
-    if (current[current.length - 2] === "/") {
-      alert("Impossible");
+    if (output[output.length - 1] === "/") {
       return;
     }
 
@@ -218,11 +210,6 @@ document.addEventListener("DOMContentLoaded", function () {
   }); // handle equal
 
   var equal = document.getElementById("equals").addEventListener("click", function (event) {
-    if (current[current.length - 2] === "+" || current[current.length - 2] === "-" || current[current.length - 2] === "/" || current[current.length - 2] === "*") {
-      alert("Impossible");
-      return;
-    }
-
     output += input;
     console.log(output);
     var reg = /\+|-|\*|\//gm;
@@ -270,7 +257,6 @@ document.addEventListener("DOMContentLoaded", function () {
       input += inputKey;
       display.innerText = input;
       updateScreen(inputKey);
-      doingCalc = true;
       console.log("input => ", input);
     }
 
